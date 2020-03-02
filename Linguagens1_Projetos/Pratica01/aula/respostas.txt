@@ -1,0 +1,10 @@
+1. C:\Program Files\Java\jdk1.8.0_162
+2. C:\Program Files\Java\jdk1.8.0_162\bin
+3. javac NomeDoPrograma.java
+4. java NomeDoPrograma 
+5. variaveis que indicam para o sistema operacional como achar as coisas
+6. em seu ambiente sim 
+7. setx nome=valor
+    windows -- set nome=valor
+    linux -- export VARIAVEL="VALOR"
+8. JAVA_HOME é onde o java esta instalado no computador

@@ -14,9 +14,9 @@ public class TesteJogo {
 
         System.out.println("Digite o numero do tipo de jogo:\n1. RPS \n2. RPSLS");
         tipoDeJogo = scanner.nextInt();
-        scanner.nextLine();
+        scanner.nextLine(); //Se nao faco isso ele pula o primeiro scanner, dá problema?
 
-        if(tipoDeJogo == 1){
+        if(tipoDeJogo == 1){  //jogo RPS
             while(continua){ //jogo continua ate alguem ganhar
                 System.out.println("Digite o nome do primeiro jogador: ");
                 jogos.j1.nome = scanner.nextLine();
@@ -33,7 +33,7 @@ public class TesteJogo {
                 
             }
         }
-         else if(tipoDeJogo == 2){
+         else if(tipoDeJogo == 2){ //jogo RPSLS
             while(continua){ //jogo continua ate alguem ganhar
                 System.out.println("Digite o nome do primeiro jogador: ");
                 jogos.j1.nome = scanner.nextLine();

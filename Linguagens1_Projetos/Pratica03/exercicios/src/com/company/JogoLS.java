@@ -1,8 +1,8 @@
 package com.company;
-// cópia do código de Prof. Murilo Zanini
+
 import java.util.Scanner;
 
-public class Jogo {
+public class JogoLS {
     private Jogador j1,j2;
 
     public void jogar(){
@@ -13,14 +13,20 @@ public class Jogo {
         System.out.println("1 - Pedra");
         System.out.println("2 - Papel");
         System.out.println("3 - Tesoura");
+        System.out.println("4 - Lizard");
+        System.out.println("5 - Spock");
         int escolha = Integer.parseInt(scanner.nextLine());
         switch(escolha){
             case 1:
-                j1 = new Jogador(nome, Jogada.PEDRA); break;
+                j1 = new Jogador(nome, JogadaLS.PEDRA); break;
             case 2:
-                j1 = new Jogador(nome, Jogada.PAPEL); break;
+                j1 = new Jogador(nome, JogadaLS.PAPEL); break;
             case 3:
-                j1 = new Jogador(nome, Jogada.TESOURA); break;
+                j1 = new Jogador(nome, JogadaLS.TESOURA); break;
+            case 4:
+                j1 = new Jogador(nome, JogadaLS.LIZARD); break;
+            case 5:
+                j1 = new Jogador(nome, JogadaLS.SPOCK); break;
         }
 
         System.out.println("Informe o nome do Jogador 2:");
@@ -29,15 +35,21 @@ public class Jogo {
         System.out.println("1 - Pedra");
         System.out.println("2 - Papel");
         System.out.println("3 - Tesoura");
+        System.out.println("4 - Lizard");
+        System.out.println("5 - Spock");
         escolha = Integer.parseInt(scanner.nextLine());
         switch(escolha){
             case 1:
-                j2 = new Jogador(nome, Jogada.PEDRA); break;
+                j2 = new Jogador(nome, JogadaLS.PEDRA); break;
             case 2:
-                j2 = new Jogador(nome, Jogada.PAPEL);break;
+                j2 = new Jogador(nome, JogadaLS.PAPEL);break;
             case 3:
-                j2 = new Jogador(nome, Jogada.TESOURA); break;
+                j2 = new Jogador(nome, JogadaLS.TESOURA); break;
+            case 4:
+                j2 = new Jogador(nome, JogadaLS.LIZARD); break;
+            case 5:
+                j2 = new Jogador(nome, JogadaLS.SPOCK); break;
         }
-        System.out.println("J1 - " + j1.competicao(j2) +"- J2");
+        System.out.println("J1 - " + j1.competicaoLS(j2) +"- J2");
     }
 }

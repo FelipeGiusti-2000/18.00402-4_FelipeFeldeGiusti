@@ -46,6 +46,6 @@ public class Jogo {
 
     public String getInfo(){
         return String.format("{nome:%s, genero:%s, descricao:%s}", this.nome, this.genero, this.descricao);
-        //aqui daria para usar o getNome / get... em vez do this.
+        //aqui pode usar getNome em vez do this.
     }
 }

@@ -23,6 +23,11 @@ public class Conta {
     public void addJogo(Jogo jogo){
         jogos.add(jogo);
     }
+
+    public Usuario getUser() {
+        return user;
+    }
+
     public ArrayList<Jogo> getJogos(){
         return jogos;
     }

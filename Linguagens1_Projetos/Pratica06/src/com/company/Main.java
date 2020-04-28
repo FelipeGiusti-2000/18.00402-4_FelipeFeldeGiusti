@@ -7,7 +7,7 @@ public class Main {
         ninja.train();
         AcadedmicStudent academicStudent = new AcadedmicStudent("Sazuke","Uchiha");
         academicStudent.train();
-        Chuunin chuunin = new Chuunin("Chuunin","nome","treinar 123");
+        Chuunin chuunin = new Chuunin("Chuunin","nome","missao");
         chuunin.train();
         chuunin.goToMission();
         Jounin jounin = new Jounin("jounin","famm","dahora");

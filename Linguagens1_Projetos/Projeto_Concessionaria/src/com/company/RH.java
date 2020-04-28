@@ -2,19 +2,20 @@ package com.company;
 
 public class RH {
     public static void rodarRh(){
-        Funcionario f1, f2;
-        f1 = new Funcionario(1000);
-        f2 = new Funcionario(3500);
-
-        System.out.println("Funcionario 1: ");
-        System.out.println("Salario Base: " + f1.getSalarioBase());
-        System.out.println("Comissao: "+ f1.getComissao());
-        System.out.println("Salario Total: " + f1.getSalarioFinal(10000));
-
-        System.out.println("Funcionario 2: ");
-        System.out.println("Salario Base: " + f2.getSalarioBase());
-        System.out.println("Comissao: "+ f2.getComissao());
-        System.out.println("Salario Total: " + f2.getSalarioFinal(10000));
-
+        Gerente g1, g2;
+        Vendedor v1, v2;
+        double totalDeVendas = 1000;
+        g1 = new Gerente(1000);
+        v1 = new Vendedor(1000, g1);
+        exibirSalarioFinal(totalDeVendas, g1);
+        exibirSalarioFinal(totalDeVendas, v1);
+        if(g1.darAumento(v1, 0.1))
+            System.out.println("Aumento Deu Certo!");
+        exibirSalarioFinal(totalDeVendas, v1);
     }
+
+    public static void exibirSalarioFinal(double totalDeVendas, Funcionario funcionario){
+        System.out.println("Salario Final:" + funcionario.getSalarioFinal(totalDeVendas));
+    }
+
 }

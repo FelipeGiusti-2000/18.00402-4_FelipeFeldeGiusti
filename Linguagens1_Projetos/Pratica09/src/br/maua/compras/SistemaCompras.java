@@ -17,6 +17,7 @@ public class SistemaCompras {
         listaCompras = new ListaCompras();
     }
 
+
     public void exibirListaProdutos(){
         produtos.forEach((produto)-> System.out.println(produto));
     }
@@ -24,4 +25,5 @@ public class SistemaCompras {
     public void run(){
         exibirListaProdutos();
     }
+
 }

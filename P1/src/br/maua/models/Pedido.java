@@ -12,11 +12,12 @@ public class Pedido {
     private Estado estado;
     private FormaDePagamento formaDePagamento;
 
-    public Pedido(String descrição, double valor) {
+    public Pedido(String descrição, double valor, FormaDePagamento formaDePagamento) {
         this.id = geradorId();
         this.descrição = descrição;
         this.valor = valor;
         this.estado = Estado.REALIZADO;
+        this.formaDePagamento = formaDePagamento;
     }
 
     private String geradorId(){   //Metodo retirado do enunciado
@@ -25,5 +26,9 @@ public class Pedido {
         for(int i = 0; i < 3; i++)
             idGerado += random.nextInt(10);
         return idGerado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 }

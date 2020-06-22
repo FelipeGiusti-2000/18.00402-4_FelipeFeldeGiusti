@@ -1,6 +1,9 @@
 package br.maua.models;
 
-public class Usuario {
+import br.maua.enums.Estado;
+import br.maua.interfaces.VerificarSenha;
+
+public class Usuario implements VerificarSenha {
     private String nome;
     private String email;
     private String senha;
@@ -10,10 +13,17 @@ public class Usuario {
         this.email = email;
         this.senha = senha;         //Talvez a senha tenha que fazer 123456 direto
     }
-    public void criarPedido(){
 
+    public String getSenha() {
+        return senha;
     }
-    public void alterarPedido() {
 
+
+    @Override
+    public boolean verificarSenha(String senha) {
+        if(senha.equals(getSenha())){
+            return true;
+        }
+            return false;
     }
 }

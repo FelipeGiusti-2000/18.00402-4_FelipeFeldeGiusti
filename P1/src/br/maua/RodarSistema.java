@@ -30,8 +30,8 @@ public class RodarSistema {
                     break;
                 case 1:     // Nova venda
                     if(usuario.verificarSenha(informarSenha())){
-                        //Pedido pedido = criarPedido();
-                        Pedido pedido = new Pedido("bife",12.38,FormaDePagamento.DINHEIRO);
+                        Pedido pedido = criarPedido();
+                        //Pedido pedido = new Pedido("bife",12.38,FormaDePagamento.DINHEIRO);
                         sistema.addPedido(pedido);
                     }
                     else{
@@ -47,8 +47,8 @@ public class RodarSistema {
                     if(usuario.verificarSenha(informarSenha())){
                         System.out.println("Digite o id do pedido a ser alterado: ");
                         String idAlterar = scanner.nextLine();
-                        //* Metodo para pegar estado aqui *
-                        sistema.alterarPedido(idAlterar, Estado.SAIU_PARA_ENTREGA);
+                        Estado estado = informaEstado();
+                        sistema.alterarPedido(idAlterar, estado);
                     }
                     else{
                         System.out.println("Senha incorreta.");
@@ -85,12 +85,59 @@ public class RodarSistema {
         descricao = scanner.nextLine();
         System.out.println("Digite o valor do pedido: ");
         valor = Double.parseDouble(scanner.nextLine());
+        FormaDePagamento formaDePagamento = informarFormaDePagamento();
 
-        return new Pedido(descricao,valor,FormaDePagamento.DINHEIRO);
+        return new Pedido(descricao,valor,formaDePagamento);
     }
     private static String informarSenha(){
-        String senha;
         System.out.println("Digite sua senha: ");
         return scanner.nextLine();
+    }
+    private static FormaDePagamento informarFormaDePagamento(){
+        System.out.println("Forma de pagamento:\n" +
+                "1 - Dinheiro\n" +
+                "2 - Debito\n" +
+                "3 - Credito\n" +
+                "4 - Vale alimentacao\n" +
+                "5 - Vale refeicao");
+
+        FormaDePagamento formaPag = null;   // inicializacao da formaPag
+        int opcao = Integer.parseInt(scanner.nextLine());
+        switch(opcao){
+            case 1:
+                formaPag = FormaDePagamento.DINHEIRO; break;
+            case 2:
+                formaPag = FormaDePagamento.DEBITO; break;
+            case 3:
+                formaPag = FormaDePagamento.CREDITO; break;
+            case 4:
+                formaPag = FormaDePagamento.VALE_ALIMENTACAO; break;
+            case 5:
+                formaPag = FormaDePagamento.VALE_REFEICAO; break;
+        }
+        return formaPag;
+    }
+    private static Estado informaEstado(){
+        System.out.println("Estado:\n" +
+                "1 - Realizado\n" +
+                "2 - Preparacao\n" +
+                "3 - Saiu para entrega\n" +
+                "4 - Devolvido");
+
+        Estado estado = null;       // inicializando variavel
+        int opcao = Integer.parseInt(scanner.nextLine());
+        switch (opcao){
+            case 1:
+                estado = Estado.REALIZADO; break;
+            case 2:
+                estado = Estado.PREPARACAO; break;
+            case 3:
+                estado = Estado.SAIU_PARA_ENTREGA; break;
+            case 4:
+                estado = Estado.DEVOLVIDO; break;
+            default:
+                System.out.println("Numero invalido");
+        }
+        return estado;
     }
 }

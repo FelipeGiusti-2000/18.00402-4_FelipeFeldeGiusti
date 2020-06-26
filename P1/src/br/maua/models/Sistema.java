@@ -1,20 +1,30 @@
 package br.maua.models;
 
 import br.maua.enums.Estado;
-import br.maua.interfaces.VerificarSenha;
-import br.maua.models.Pedido;
-import br.maua.models.Usuario;
 
 import java.util.ArrayList;
 
 public class Sistema {
     // Fazer essa classe, colcoar o funcionario aqui + implementacao
-    private Usuario usuario;
+    private ArrayList<Pedido> pedidos;
 
-
-    public Sistema(Usuario usuario) {
+    public Sistema() {
         ArrayList<Pedido> pedidos = new ArrayList<>();
-        this.usuario = usuario;
     }
 
+    public void addPedido(Pedido pedido){
+        pedidos.add(pedido);
+    }
+
+    public void alterarPedido(String id, Estado novoEstado){
+        for (Pedido pedido : pedidos) {
+            if(pedido.getId().equals(id)){
+                pedido.setEstado(novoEstado);
+            }
+        }
+    }
+
+    public ArrayList<Pedido> getPedidos() {
+        return pedidos;
+    }
 }

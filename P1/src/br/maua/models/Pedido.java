@@ -31,4 +31,8 @@ public class Pedido {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
+
+    public String getId() {
+        return id;
+    }
 }

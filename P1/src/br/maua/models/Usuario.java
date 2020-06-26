@@ -3,7 +3,7 @@ package br.maua.models;
 import br.maua.enums.Estado;
 import br.maua.interfaces.VerificarSenha;
 
-public class Usuario implements VerificarSenha {
+public class Usuario implements VerificarSenha{
     private String nome;
     private String email;
     private String senha;
@@ -18,12 +18,11 @@ public class Usuario implements VerificarSenha {
         return senha;
     }
 
-
     @Override
     public boolean verificarSenha(String senha) {
         if(senha.equals(getSenha())){
             return true;
         }
-            return false;
+        return false;
     }
 }

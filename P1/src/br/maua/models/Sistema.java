@@ -3,13 +3,13 @@ package br.maua.models;
 import br.maua.enums.Estado;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Sistema {
-    // Fazer essa classe, colcoar o funcionario aqui + implementacao
-    private ArrayList<Pedido> pedidos;
+    private List<Pedido> pedidos;
 
     public Sistema() {
-        ArrayList<Pedido> pedidos = new ArrayList<>();
+        pedidos = new ArrayList<Pedido>();
     }
 
     public void addPedido(Pedido pedido){
@@ -21,10 +21,13 @@ public class Sistema {
             if(pedido.getId().equals(id)){
                 pedido.setEstado(novoEstado);
             }
+            else{
+                System.out.println("id nao encontrado!");
+            }
         }
     }
 
-    public ArrayList<Pedido> getPedidos() {
+    public List<Pedido> getPedidos() {
         return pedidos;
     }
 }

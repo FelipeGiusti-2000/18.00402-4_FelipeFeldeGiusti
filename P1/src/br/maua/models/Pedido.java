@@ -7,14 +7,14 @@ import java.util.Random;
 
 public class Pedido {
     private String id;
-    private String descrição;
+    private String descricao;
     private double valor;
     private Estado estado;
     private FormaDePagamento formaDePagamento;
 
-    public Pedido(String descrição, double valor, FormaDePagamento formaDePagamento) {
+    public Pedido(String descricao, double valor, FormaDePagamento formaDePagamento) {
         this.id = geradorId();
-        this.descrição = descrição;
+        this.descricao = descricao;
         this.valor = valor;
         this.estado = Estado.REALIZADO;
         this.formaDePagamento = formaDePagamento;
@@ -34,5 +34,16 @@ public class Pedido {
 
     public String getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "id='" + id + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", valor=" + valor +
+                ", estado=" + estado +
+                ", formaDePagamento=" + formaDePagamento +
+                '}';
     }
 }

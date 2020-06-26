@@ -19,7 +19,7 @@ public class RodarSistema {
         boolean continuar = true;
 
         //Usuario usuario = criarUsuario();
-        Usuario usuario = new Usuario("Naruto","naruto@email.com","123456");
+        Usuario usuario = new Usuario("Usuario","usuario@email.com","123456");
 
         do{
             exibirMenu();
@@ -54,6 +54,8 @@ public class RodarSistema {
                         System.out.println("Senha incorreta.");
                     }
                     break;
+                default:
+                    System.out.println("Digite um dos números do menu!");
             }
         }while(continuar);
         scanner.close();

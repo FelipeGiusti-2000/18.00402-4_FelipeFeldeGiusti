@@ -8,11 +8,19 @@ import br.maua.models.Usuario;
 
 import java.util.Scanner;
 
-
+/**
+ * Classe para rodar o sistema principal, onde o usuário pode interagir com o sistema
+ * @author Felipe Felde Giusti
+ * @since 21/06/2020
+ * @version 1.0
+ */
 public class RodarSistema {
     private static Scanner scanner;
     private static Sistema sistema;
 
+    /**
+     * Método que roda o sistema principal
+     */
     public static void run(){
         scanner = new Scanner(System.in);
         sistema = new Sistema();
@@ -62,6 +70,9 @@ public class RodarSistema {
 
     }
 
+    /**
+     * Método que exibe um menu no console
+     */
     private static void exibirMenu(){
         System.out.println("Pizzaria o Rato que Ri:\n" +
                 "1 - Nova venda\n" +
@@ -69,6 +80,11 @@ public class RodarSistema {
                 "3 - Alterar pedidos\n" +
                 "0 - Sair");
     }
+
+    /**
+     * Método para inputar informações de um novo usuário
+     * @return novo usuário do tipo Usuario
+     */
     private static Usuario criarUsuario(){
         String nome, email, senha;
         System.out.println("Digite o nome do usuário: ");
@@ -79,6 +95,11 @@ public class RodarSistema {
         senha = scanner.nextLine();
         return new Usuario(nome, email, senha);
     }
+
+    /**
+     * Método que cria um novo pedido baseado nos inputs de um usuário
+     * @return novo pedido do tipo Pedido
+     */
     private static Pedido criarPedido(){
         String descricao;
         double valor;
@@ -91,10 +112,20 @@ public class RodarSistema {
 
         return new Pedido(descricao,valor,formaDePagamento);
     }
+
+    /**
+     * Método para inputar uma senha
+     * @return String que se refere a uma senha
+     */
     private static String informarSenha(){
         System.out.println("Digite sua senha: ");
         return scanner.nextLine();
     }
+
+    /**
+     * Método para escolher a forma de pagamento
+     * @return Enumeração do tipo FormaDePagamento que informa a forma de pagamento
+     */
     private static FormaDePagamento informarFormaDePagamento(){
         System.out.println("Forma de pagamento:\n" +
                 "1 - Dinheiro\n" +
@@ -119,6 +150,11 @@ public class RodarSistema {
         }
         return formaPag;
     }
+
+    /**
+     * Método para escolher o estado do pedido
+     * @return Enumeração do tipo Estado que informa o estado do pedido
+     */
     private static Estado informaEstado(){
         System.out.println("Estado:\n" +
                 "1 - Realizado\n" +
@@ -127,6 +163,7 @@ public class RodarSistema {
                 "4 - Devolvido");
 
         Estado estado = null;       // inicializando variavel
+
         int opcao = Integer.parseInt(scanner.nextLine());
         switch (opcao){
             case 1:

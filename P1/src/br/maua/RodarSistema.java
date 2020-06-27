@@ -52,9 +52,13 @@ public class RodarSistema {
                     }
                     break;
                 case 3:     // Alterar pedidos
-                    if(usuario.verificarSenha(informarSenha())){
+                    if(usuario.verificarSenha(informarSenha())) {
                         System.out.println("Digite o id do pedido a ser alterado: ");
                         String idAlterar = scanner.nextLine();
+                        if (!sistema.getPedidos().contains(idAlterar)) {
+                            System.out.println("Id inválido!");
+                            break;
+                        }
                         Estado estado = informaEstado();
                         sistema.alterarPedido(idAlterar, estado);
                     }
@@ -102,12 +106,22 @@ public class RodarSistema {
      */
     private static Pedido criarPedido(){
         String descricao;
-        double valor;
+        double valor = 0;   // Inicializando variavel
 
         System.out.println("Digite a discriacao do pedido: ");
         descricao = scanner.nextLine();
-        System.out.println("Digite o valor do pedido: ");
-        valor = Double.parseDouble(scanner.nextLine());
+        boolean loop = true;
+        while(loop){
+            try {
+                System.out.println("Digite o valor do pedido no formato X.XX:");
+                valor = Double.parseDouble(scanner.nextLine());
+                loop = false;
+
+            }catch (Exception NumberFormatException) {
+                System.out.println("Digite um número no formato X.XX");
+            }
+        }
+
         FormaDePagamento formaDePagamento = informarFormaDePagamento();
 
         return new Pedido(descricao,valor,formaDePagamento);
@@ -127,28 +141,29 @@ public class RodarSistema {
      * @return Enumeração do tipo FormaDePagamento que informa a forma de pagamento
      */
     private static FormaDePagamento informarFormaDePagamento(){
-        System.out.println("Forma de pagamento:\n" +
-                "1 - Dinheiro\n" +
-                "2 - Debito\n" +
-                "3 - Credito\n" +
-                "4 - Vale alimentacao\n" +
-                "5 - Vale refeicao");
+        // inicialização das variáveis:
+        int opcao = -1;
+        FormaDePagamento formaDePagamento = null;
+        boolean loop = true;
+        //loop:
+        while(loop){
+            System.out.println("Forma de pagamento:\n" +
+                    "1 - Dinheiro\n" +
+                    "2 - Debito\n" +
+                    "3 - Credito\n" +
+                    "4 - Vale alimentacao\n" +
+                    "5 - Vale refeicao");
 
-        FormaDePagamento formaPag = null;   // inicializacao da formaPag
-        int opcao = Integer.parseInt(scanner.nextLine());
-        switch(opcao){
-            case 1:
-                formaPag = FormaDePagamento.DINHEIRO; break;
-            case 2:
-                formaPag = FormaDePagamento.DEBITO; break;
-            case 3:
-                formaPag = FormaDePagamento.CREDITO; break;
-            case 4:
-                formaPag = FormaDePagamento.VALE_ALIMENTACAO; break;
-            case 5:
-                formaPag = FormaDePagamento.VALE_REFEICAO; break;
+            try {
+                opcao = Integer.parseInt(scanner.nextLine());
+                formaDePagamento = FormaDePagamento.values()[opcao - 1];
+                loop = false;
+            }catch (NumberFormatException | ArrayIndexOutOfBoundsException exception){
+                System.out.println("Digite um número presente no menu");
+            }
         }
-        return formaPag;
+
+        return formaDePagamento;
     }
 
     /**
@@ -156,26 +171,25 @@ public class RodarSistema {
      * @return Enumeração do tipo Estado que informa o estado do pedido
      */
     private static Estado informaEstado(){
-        System.out.println("Estado:\n" +
-                "1 - Realizado\n" +
-                "2 - Preparacao\n" +
-                "3 - Saiu para entrega\n" +
-                "4 - Devolvido");
+        //inicialização das variáveis:
+        int opcao = -1;
+        Estado estado = null;
+        boolean loop = true;
+        //loop:
+        while(loop){
+            System.out.println("Estado:\n" +
+                    "1 - Realizado\n" +
+                    "2 - Preparacao\n" +
+                    "3 - Saiu para entrega\n" +
+                    "4 - Devolvido");
 
-        Estado estado = null;       // inicializando variavel
-
-        int opcao = Integer.parseInt(scanner.nextLine());
-        switch (opcao){
-            case 1:
-                estado = Estado.REALIZADO; break;
-            case 2:
-                estado = Estado.PREPARACAO; break;
-            case 3:
-                estado = Estado.SAIU_PARA_ENTREGA; break;
-            case 4:
-                estado = Estado.DEVOLVIDO; break;
-            default:
-                System.out.println("Numero invalido");
+            try {
+                opcao = Integer.parseInt(scanner.nextLine());
+                estado = Estado.values()[opcao - 1];
+                loop = false;
+            }catch (NumberFormatException | ArrayIndexOutOfBoundsException exception){
+                System.out.println("Digite um número presente no menu");
+            }
         }
         return estado;
     }

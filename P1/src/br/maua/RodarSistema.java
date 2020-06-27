@@ -55,7 +55,7 @@ public class RodarSistema {
                     if(usuario.verificarSenha(informarSenha())) {
                         System.out.println("Digite o id do pedido a ser alterado: ");
                         String idAlterar = scanner.nextLine();
-                        if (!sistema.getPedidos().contains(idAlterar)) {
+                        if(!verificarId(idAlterar)){
                             System.out.println("Id inválido!");
                             break;
                         }
@@ -192,5 +192,21 @@ public class RodarSistema {
             }
         }
         return estado;
+    }
+
+    /**
+     * Método para verificar se um id está na lista de pedidos
+     * @param id id a ser testado
+     * @return true se o id é um id válido (é um pedido na lista)
+     */
+    private static boolean verificarId(String id){
+        boolean cond = false;
+        for (Pedido pedido:sistema.getPedidos()) {
+            if(pedido.getId().equals(id)){
+                cond = true;
+                break;
+            }
+        }
+        return cond;
     }
 }

@@ -25,13 +25,18 @@ public class RodarSistema {
         scanner = new Scanner(System.in);
         sistema = new Sistema();
         boolean continuar = true;
+        int escolha = -1;
 
         //Usuario usuario = criarUsuario();
         Usuario usuario = new Usuario("Usuario","usuario@email.com","123456");
 
         do{
             exibirMenu();
-            int escolha = Integer.parseInt(scanner.nextLine());
+            try {
+                escolha = Integer.parseInt(scanner.nextLine());
+            }catch(Exception NumberFormatException){
+                // mando mensagem sobre ela usando o default
+            }
             switch(escolha){
                 case 0:     // Sair
                     continuar = false;
@@ -47,9 +52,11 @@ public class RodarSistema {
                     }
                     break;
                 case 2:     // Verificar pedidos
+                    System.out.println("Lista de pedidos:");
                     for (Pedido pedido: sistema.getPedidos()){
                         System.out.println(pedido.toString());
                     }
+                    System.out.println("");     //dá um espaço
                     break;
                 case 3:     // Alterar pedidos
                     if(usuario.verificarSenha(informarSenha())) {
@@ -71,7 +78,6 @@ public class RodarSistema {
             }
         }while(continuar);
         scanner.close();
-
     }
 
     /**
@@ -108,7 +114,7 @@ public class RodarSistema {
         String descricao;
         double valor = 0;   // Inicializando variavel
 
-        System.out.println("Digite a discriacao do pedido: ");
+        System.out.println("Digite a descriacao do pedido: ");
         descricao = scanner.nextLine();
         boolean loop = true;
         while(loop){

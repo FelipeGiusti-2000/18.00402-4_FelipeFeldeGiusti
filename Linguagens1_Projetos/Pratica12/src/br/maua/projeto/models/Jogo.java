@@ -2,6 +2,7 @@ package br.maua.projeto.models;
 
 
 import br.maua.enumeracoes.Status;
+import org.json.JSONObject;
 
 public class Jogo {
     private String plataforma;
@@ -30,4 +31,17 @@ public class Jogo {
     public void setStatusJogando(){
         this.status = Status.JOGANDO;
     }
+
+    public String getPlataforma() {
+        return this.plataforma;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getStatus() {
+        return "" + status;
+    }
 }
+

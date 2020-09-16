@@ -1,16 +1,16 @@
 package br.maua.dao;
 
 import br.maua.models.Produto;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProdutoDAO implements DAO<Produto>,DAOFields{
+public class ProdutoDAO implements DAO<Produto>,DAOFields {
     private Connection connection;
+    //    private String myDBConnectionString = "jdbc:sqlite:dados.db";
     private String myDBConnectionString = "jdbc:sqlite:bancoAula.db";
 
-    public ProdutoDAO() {
+    public ProdutoDAO(){
         try {
             connection = DriverManager.getConnection(myDBConnectionString);
         } catch (SQLException throwables) {
@@ -20,16 +20,11 @@ public class ProdutoDAO implements DAO<Produto>,DAOFields{
 
     @Override
     public List<Produto> get(String condition) {
-        return null;
-    }
-
-    @Override
-    public List<Produto> getAll() {
         List<Produto> produtos = new ArrayList<>();
-        try {
+        try{
             Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery("SELECT * FROM produtos");
-            while (result.next()) {
+            ResultSet result = statement.executeQuery(getSelectConditionalString(getTableName()) + condition);
+            while(result.next()){
                 Produto produto = new Produto(
                         result.getString("codigo"),
                         result.getString("nome"),
@@ -41,7 +36,32 @@ public class ProdutoDAO implements DAO<Produto>,DAOFields{
                 produtos.add(produto);
             }
             result.close();
-        } catch (Exception e) {
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return produtos;
+    }
+
+    @Override
+    public List<Produto> getAll() {
+        List<Produto> produtos = new ArrayList<>();
+        try{
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(getSelectAllString(getTableName()));
+            while(result.next()){
+                Produto produto = new Produto(
+                        result.getString("codigo"),
+                        result.getString("nome"),
+                        result.getString("descricao"),
+                        result.getDouble("custo"),
+                        result.getDouble("valor"),
+                        result.getInt("quantidade")
+                );
+                produtos.add(produto);
+            }
+            result.close();
+        }catch (Exception e){
             e.printStackTrace();
         }
 
@@ -50,8 +70,8 @@ public class ProdutoDAO implements DAO<Produto>,DAOFields{
 
     @Override
     public void update(Produto produto) {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE produtos SET codigo = ?, nome = ?, descricao = ?, custo = ?, valor = ?, quantidade = ? WHERE codigo = ?;");
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(getUpdateString(getTableName()));
             preparedStatement.setString(1, produto.getCodigo());
             preparedStatement.setString(2, produto.getNome());
             preparedStatement.setString(3, produto.getDescricao());
@@ -61,69 +81,66 @@ public class ProdutoDAO implements DAO<Produto>,DAOFields{
             preparedStatement.setString(7, produto.getCodigo());
             //Executa o PreparedStatement
             int retorno = preparedStatement.executeUpdate();
-        } catch (Exception e) {
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
 
     @Override
     public void delete(Produto produto) {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM produtos WHERE codigo = ?");
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(getDeleteString(getTableName()));
             preparedStatement.setString(1, produto.getCodigo());
             preparedStatement.executeUpdate();
-        } catch (Exception e) {
+        }catch(Exception e){
             e.printStackTrace();
         }
     }
 
     @Override
     public void create(Produto produto) {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO produtos (codigo, nome, descricao, custo, venda, quantidade) VALUES (?, ?, ?, ?, ?, ?);");
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(getInsertString(getTableName()));
             preparedStatement.setString(1, produto.getCodigo());
             preparedStatement.setString(2, produto.getNome());
             preparedStatement.setString(3, produto.getDescricao());
             preparedStatement.setDouble(4, produto.getCusto());
             preparedStatement.setDouble(5, produto.getValor());
             preparedStatement.setInt(6, produto.getQuantidade());
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            //Executa o PreparedStatement
+            int retorno = preparedStatement.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
     @Override
     public String getTableName() {
-        return null;
+        return "produtos";
     }
 
     @Override
-    public String getDeleteString() {
-        return null;
+    public String getDeleteString(String table) {
+        return "DELETE FROM "+ table +" WHERE codigo = ?";
     }
 
     @Override
-    public String getUpdateString() {
-        return null;
+    public String getUpdateString(String table) {
+        return "UPDATE "+ table +" SET codigo = ?, nome = ?, descricao = ?, custo = ?, valor = ?, quantidade = ? WHERE codigo = ?;";
     }
 
     @Override
-    public String getInsertString() {
-        return null;
+    public String getInsertString(String table) {
+        return "INSERT INTO "+ table + " (codigo, nome, descricao, custo, valor, quantidade) VALUES (?, ?, ?, ?, ?, ?);";
     }
 
     @Override
-    public String getSelectAllString() {
-        return null;
+    public String getSelectAllString(String table) {
+        return "SELECT * FROM " + table;
     }
 
     @Override
-    public String getSelectConditionString() {
-        return null;
+    public String getSelectConditionalString(String table) {
+        return "SELECT * FROM " + table + " WHERE ";
     }
-
-//    @Override
-//    public List<Produto> get(String condition){
-//
-//    }
 }

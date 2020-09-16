@@ -17,6 +17,10 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
+    public Produto(String codigo){
+        this(codigo,null,null,0.0,0.0,0);
+    }
+
     @Override
     public String toString() {
         return "Produto{" +

@@ -62,7 +62,7 @@ public class ControleInterface {
             alert.setTitle("URl Incorreta");
             alert.setHeaderText("Batata!");
             alert.showAndWait();
-            alert.show();
+            //alert.show();
         }
 
     }

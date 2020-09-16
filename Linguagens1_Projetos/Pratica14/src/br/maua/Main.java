@@ -1,7 +1,7 @@
 package br.maua;
 
-import br.maua.dao.AplicacaoDAO;
 import br.maua.testes.Aplicacao;
+import br.maua.testes.AplicacaoDAO;
 
 public class Main {
 

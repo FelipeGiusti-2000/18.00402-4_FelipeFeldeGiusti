@@ -6,5 +6,5 @@ public interface DAOFields {
     String getUpdateString(String table);
     String getInsertString(String table);
     String getSelectAllString(String table);
-    String getSelectConditionString(String table);
+    String getSelectConditionalString(String table);
 }

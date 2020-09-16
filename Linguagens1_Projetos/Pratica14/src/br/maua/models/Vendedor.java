@@ -2,6 +2,8 @@ package br.maua.models;
 
 import br.maua.Interfaces.Validator;
 
+import java.util.Objects;
+
 public class Vendedor implements Validator {
     private String id;
     private String name;
@@ -13,6 +15,15 @@ public class Vendedor implements Validator {
         this.password = password;
     }
 
+    @Override
+    public String toString() {
+        return "Vendedor{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
     public String getId() {
         return id;
     }
@@ -22,16 +33,16 @@ public class Vendedor implements Validator {
     }
 
     @Override
-    public boolean validate(String pass){
-        return this.password.equals(pass);
+    public boolean validate(String pass) {
+        return hashCode() == Objects.hashCode(pass);
     }
 
     @Override
-    public String toString() {
-        return "Vendedor{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+    public int hashCode() {
+        return Objects.hash(this.password);
+    }
+
+    public String getSenhaHash() {
+        return ""+hashCode();
     }
 }

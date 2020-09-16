@@ -69,7 +69,7 @@ public class PokemonCardDAO implements DAO<PokemonCard>, DAOFields {
     }
 
     @Override
-    public void update(PokemonCard pokemonCard) {
+    public void update(PokemonCard pokemonCard, String idToUpdate) {
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(getUpdateString(getTableName()));
             preparedStatement.setString(1,pokemonCard.getId());
@@ -78,7 +78,7 @@ public class PokemonCardDAO implements DAO<PokemonCard>, DAOFields {
             preparedStatement.setString(4,pokemonCard.getRarity());
             preparedStatement.setString(5,pokemonCard.getSeries());
             preparedStatement.setString(6,pokemonCard.getCardSet());
-            preparedStatement.setString(7,pokemonCard.getId());
+            preparedStatement.setString(7,idToUpdate);
 
             preparedStatement.executeUpdate();
         }

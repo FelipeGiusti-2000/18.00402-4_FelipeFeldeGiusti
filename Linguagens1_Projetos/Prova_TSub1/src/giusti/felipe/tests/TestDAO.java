@@ -66,7 +66,7 @@ public class TestDAO {
         cardSet = scanner.next();
         pokemonCardDAO.update(new PokemonCard(
                 id, imageUrl, name, rarity, series, cardSet
-        ));
+        ),id);
     }
 
     private void registerNewCard() {

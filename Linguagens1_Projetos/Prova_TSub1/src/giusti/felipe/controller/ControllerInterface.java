@@ -118,7 +118,8 @@ public class ControllerInterface {
                 txtId_Card.getText(), txtUrl_Card.getText(), txtName_Card.getText(),
                 txtRarity_Card.getText(), txtSeries_Card.getText(), txtCardSet_Card.getText()
         );
-        pokemonCardDAO.update(pokemonCard);
+        // Mudanca no update para também atualizar o id quando necessário
+        pokemonCardDAO.update(pokemonCard, cardList.getPokemonCard().getId());
 
         cardList.updateCard(pokemonCard);
 

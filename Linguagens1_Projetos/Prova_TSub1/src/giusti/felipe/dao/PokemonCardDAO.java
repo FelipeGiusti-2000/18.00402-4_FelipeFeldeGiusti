@@ -150,5 +150,3 @@ public class PokemonCardDAO implements DAO<PokemonCard>, DAOFields {
         return "SELECT * FROM " + table + " WHERE ";
     }
 }
-
-

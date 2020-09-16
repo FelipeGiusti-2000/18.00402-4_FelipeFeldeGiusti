@@ -43,7 +43,7 @@ public class CardList {
         pokemonCards.add(card);
     }
     public void removeCard(PokemonCard card){
-        pokemonCards.remove(card);
+        pokemonCards.remove(currentCardIndex);
     }
     public void updateCard(PokemonCard card){
         pokemonCards.set(currentCardIndex, card);

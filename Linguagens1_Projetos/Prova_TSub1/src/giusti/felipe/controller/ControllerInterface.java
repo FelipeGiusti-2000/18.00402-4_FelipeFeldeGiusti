@@ -53,6 +53,8 @@ public class ControllerInterface {
 
     @FXML
     private Button btnUpdateCard;
+    @FXML
+    private Button btnDeleteCard;
 
     @FXML
     public void register(){
@@ -123,5 +125,15 @@ public class ControllerInterface {
 
         cardList.updateCard(pokemonCard);
 
+    }
+    public void deleteCard(){
+        PokemonCard pokemonCard = new PokemonCard(
+                txtId_Card.getText(), txtUrl_Card.getText(), txtName_Card.getText(),
+                txtRarity_Card.getText(), txtSeries_Card.getText(), txtCardSet_Card.getText()
+        );
+        pokemonCardDAO.delete(pokemonCard);
+
+        cardList.removeCard(pokemonCard);
+        nextCard();
     }
 }

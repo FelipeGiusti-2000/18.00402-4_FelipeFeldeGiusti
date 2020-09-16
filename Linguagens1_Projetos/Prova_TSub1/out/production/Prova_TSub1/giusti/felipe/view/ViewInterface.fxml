@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="giusti.felipe.controller.ControllerInterface">
    <children>
-      <HBox layoutX="-1.0" prefHeight="410.0" prefWidth="600.0">
+      <HBox layoutX="-1.0" prefHeight="395.0" prefWidth="600.0">
          <children>
             <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="400.0" prefWidth="170.0" spacing="8.0">
                <children>
@@ -55,10 +55,10 @@
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="BOTTOM_CENTER" fillWidth="false" prefHeight="388.0" prefWidth="299.0">
                <children>
                   <ImageView fx:id="imgCard" fitHeight="327.0" fitWidth="299.0" pickOnBounds="true" preserveRatio="true" />
-                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="64.0">
+                  <HBox prefHeight="68.0" prefWidth="300.0" spacing="64.0">
                      <children>
                         <Button fx:id="btnLastCard" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#lastCard" prefWidth="200.0" text="&lt;-" />
                         <Button fx:id="btnNextCard" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#nextCard" prefWidth="200.0" text="-&gt;" />
@@ -78,6 +78,11 @@
                   <TextField fx:id="txtSeries_Card" promptText="série:" />
                   <TextField fx:id="txtCardSet_Card" promptText="coleção:" />
                   <Button fx:id="btnUpdateCard" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateCard" text="Atualizar carta" textAlignment="CENTER" />
+                  <Button fx:id="btnDeleteCard" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteCard" text="Apagar Carta" textAlignment="CENTER" textFill="#ea1414">
+                     <VBox.margin>
+                        <Insets top="32.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
                <padding>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />

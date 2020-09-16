@@ -99,12 +99,12 @@ public class TestDAO {
 
     private void printCards() {
         pokemonCards = pokemonCardDAO.getAll();
-        System.out.println("Carta:");
+        System.out.println("Cartas:");
         pokemonCards.forEach( card -> System.out.println(card));
     }
 
     private void menu() {
-        System.out.println("Menu");
+        System.out.println("\nMenu");
         System.out.println("1 - Cartas Cadastradas");
         System.out.println("2 - Deletar Carta");
         System.out.println("3 - Alterar Carta");

@@ -1,55 +1,55 @@
 package giusti.felipe.models;
 
 public class PokemonCard {
-    private String urlImagem;
     private String id;
-    private String nome;
-    private String raridade;
-    private String serie;
-    private String colecao;
+    private String imageUrl;
+    private String name;
+    private String rarity;
+    private String series;
+    private String cardSet;
 
-    public PokemonCard(String urlImagem, String id, String nome, String raridade, String serie, String colecao) {
-        this.urlImagem = urlImagem;
+    public PokemonCard(String id, String imageUrl, String name, String rarity, String series, String set) {
         this.id = id;
-        this.nome = nome;
-        this.raridade = raridade;
-        this.serie = serie;
-        this.colecao = colecao;
-    }
-
-    public String getUrlImagem() {
-        return urlImagem;
+        this.imageUrl = imageUrl;
+        this.name = name;
+        this.rarity = rarity;
+        this.series = series;
+        this.cardSet = set;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public String getRaridade() {
-        return raridade;
+    public String getName() {
+        return name;
     }
 
-    public String getSerie() {
-        return serie;
+    public String getRarity() {
+        return rarity;
     }
 
-    public String getColecao() {
-        return colecao;
+    public String getSeries() {
+        return series;
+    }
+
+    public String getCardSet() {
+        return cardSet;
     }
 
     @Override
     public String toString() {
         return "PokemonCard{" +
-                "urlImagem='" + urlImagem + '\'' +
-                ", id='" + id + '\'' +
-                ", nome='" + nome + '\'' +
-                ", raridade='" + raridade + '\'' +
-                ", serie='" + serie + '\'' +
-                ", colecao='" + colecao + '\'' +
+                "id='" + id + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", name='" + name + '\'' +
+                ", rarity='" + rarity + '\'' +
+                ", series='" + series + '\'' +
+                ", set='" + cardSet + '\'' +
                 '}';
     }
 }

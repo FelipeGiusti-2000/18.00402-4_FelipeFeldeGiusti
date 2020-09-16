@@ -17,6 +17,10 @@ public class PokemonCard {
         this.cardSet = set;
     }
 
+    public PokemonCard(String id){
+        this(id, null,null,null,null,null);
+    }
+
     public String getId() {
         return id;
     }

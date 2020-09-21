@@ -12,7 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
- * Controlador da interface gráfica
+ * Controlador da interface grafica
  * @author Felipe Felde Giusti
  * @since 16/09/2020
  */
@@ -65,7 +65,7 @@ public class ControllerInterface {
     private Label lblListIndex;
 
     /**
-     * Método carregado ao inicializar a interface com uma carta da lista
+     * Metodo carregado ao inicializar a interface com uma carta da lista
      */
     @FXML
     public void initialize(){
@@ -73,7 +73,7 @@ public class ControllerInterface {
     }
 
     /**
-     * Método que registra uma carta na database e na lista de cartas
+     * Metodo que registra uma carta na database e na lista de cartas
      */
     @FXML
     public void register(){
@@ -96,7 +96,7 @@ public class ControllerInterface {
     }
 
     /**
-     * Método que atualiza a interface do usuário com os dados de uma lista de carta
+     * Metodo que atualiza a interface do usuario com os dados de uma lista de carta
      */
     @FXML
     public void updateCardUI(){
@@ -113,7 +113,7 @@ public class ControllerInterface {
     }
 
     /**
-     * Método para exibir uma imagem na tela, erros na url causam um alerta
+     * Metodo para exibir uma imagem na tela, erros na url causam um alerta
      */
     @FXML
     public void previewPhoto(){
@@ -134,7 +134,7 @@ public class ControllerInterface {
     }
 
     /**
-     * Avança na lista para a próxima carta e atualiza a UI com as novas informações
+     * Avanca na lista para a próxima carta e atualiza a UI com as novas informacoes
      */
     public void nextCard(){
         cardList.changeToNextCardIndex();
@@ -142,7 +142,7 @@ public class ControllerInterface {
     }
 
     /**
-     * Regride na lista para a última carta e atualiza a UI com as novas informações
+     * Regride na lista para a ultima carta e atualiza a UI com as novas informacoes
      */
 
     public void lastCard(){
@@ -151,7 +151,7 @@ public class ControllerInterface {
     }
 
     /**
-     * Método que atualiza as informações de uma carta já presente na database
+     * Metodo que atualiza as informacoes de uma carta ja presente na database
      */
     public void updateCard(){
         PokemonCard pokemonCard = new PokemonCard(
@@ -166,7 +166,7 @@ public class ControllerInterface {
     }
 
     /**
-     * Método que deleta uma carta ja presente na database
+     * Metodo que deleta uma carta ja presente na database
      */
     public void deleteCard(){
         PokemonCard pokemonCard = new PokemonCard(

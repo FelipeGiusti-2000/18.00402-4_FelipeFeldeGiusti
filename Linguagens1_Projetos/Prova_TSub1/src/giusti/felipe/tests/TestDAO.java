@@ -18,7 +18,7 @@ public class TestDAO {
     private Scanner scanner;
 
     /**
-     * Construtor: inicializa as variáveis usadas
+     * Construtor: inicializa as variaveis usadas
      */
     public TestDAO() {
         pokemonCards = new ArrayList<>();

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe que faz a comunicação com o banco de dados de uma carta pokemon
+ * Classe que faz a comunicacao com o banco de dados de uma carta pokemon
  * @author Felipe Felde Giusti
  * @since 16/09/2020
  */
@@ -16,7 +16,7 @@ public class PokemonCardDAO implements DAO<PokemonCard>, DAOFields {
     private String myDBConnectionString = "jdbc:sqlite:card_data.db";
 
     /**
-     * Inicializa a conexão com o banco de dados
+     * Inicializa a conexao com o banco de dados
      */
     public PokemonCardDAO(){
         try {
@@ -58,7 +58,7 @@ public class PokemonCardDAO implements DAO<PokemonCard>, DAOFields {
 
     /**
      *
-     * @return Lista de cartas do tipo List com todas as informações do banco de dados
+     * @return Lista de cartas do tipo List com todas as informacoes do banco de dados
      */
     @Override
     public List<PokemonCard> getAll() {
@@ -87,7 +87,7 @@ public class PokemonCardDAO implements DAO<PokemonCard>, DAOFields {
 
     /**
      * Atualiza o banco de dados a partir do id de uma carta
-     * @param pokemonCard Carta do tipo PokemonCard com as informações que atualizarão a carta
+     * @param pokemonCard Carta do tipo PokemonCard com as informacoes que atualizarao a carta
      * @param idToUpdate id da carta a ser atualizada
      */
     @Override

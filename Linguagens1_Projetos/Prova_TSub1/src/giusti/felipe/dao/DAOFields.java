@@ -1,7 +1,7 @@
 package giusti.felipe.dao;
 
 /**
- * Interface com métodos que retornam strings de comandos usados no banco de dados
+ * Interface com metodos que retornam strings de comandos usados no banco de dados
  * @author Felipe Felde Giusti
  * @since 16/09/2020
  */
@@ -24,20 +24,20 @@ public interface DAOFields {
     String getUpdateString(String table);
 
     /**
-     * @param table tabela em que será inserido o desejado
-     * @return String com código de inserção
+     * @param table tabela em que sera inserido o desejado
+     * @return String com codigo de inserção
      */
     String getInsertString(String table);
 
     /**
      * @param table tabela usado no SELECT
-     * @return String com código para selecionar tabela desejada
+     * @return String com codigo para selecionar tabela desejada
      */
     String getSelectAllString(String table);
 
     /**
      * @param table tabela usado no SELECT
-     * @return String com código para selecionar tabela desejada
+     * @return String com codigo para selecionar tabela desejada
      */
     String getSelectConditionalString(String table);
 }

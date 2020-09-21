@@ -3,7 +3,7 @@ package giusti.felipe.models;
 import java.util.List;
 
 /**
- * Representação de uma lista de cartas de pokemon
+ * Representacao de uma lista de cartas de pokemon
  * @author Felipe Felde Giusti
  * @since 16/09/2020
  */
@@ -20,7 +20,7 @@ public class CardList {
     }
 
     /**
-     * Método que retorna um valor inteiro da posiçao carta atual no array
+     * Metodo que retorna um valor inteiro da posicao carta atual no array
      * @return Int com o index da carta atual
      */
     public int getCurrentCardIndex() {
@@ -28,7 +28,7 @@ public class CardList {
     }
 
     /**
-     * Método que retorna uma carta da lista em uma posição específica
+     * Metodo que retorna uma carta da lista em uma posicao especifica
      * @param index Index da carta desejada na lista
      * @return Carta da lista no index desejado
      */
@@ -37,7 +37,7 @@ public class CardList {
     }
 
     /**
-     * Método que devolve uma carta no index atual (currentCardIndex)
+     * Metodo que devolve uma carta no index atual (currentCardIndex)
      * @return carta do tipo PokemonCard armazenada na lista no índice currentCardIndex
      */
     public PokemonCard getPokemonCard(){
@@ -45,7 +45,7 @@ public class CardList {
     }
 
     /**
-     * Aumenta o indice currentCardIndex, voltando a 0 ao atingir a última posição da lista
+     * Aumenta o indice currentCardIndex, voltando a 0 ao atingir a ultima posicao da lista
      */
     public void changeToNextCardIndex(){
         if(currentCardIndex < pokemonCards.size()-1){
@@ -57,7 +57,7 @@ public class CardList {
     }
 
     /**
-     * Reduz o indice atual, currentCardIndex, voltando ao fim da lista ao atingir a posição 0
+     * Reduz o indice atual, currentCardIndex, voltando ao fim da lista ao atingir a posicao 0
      */
     public void changeToLastCardIndex(){
         if(currentCardIndex > 0){
@@ -69,7 +69,7 @@ public class CardList {
     }
 
     /**
-     * Adiciona uma carta à lista
+     * Adiciona uma carta a lista
      * @param card Carta do tipo PokemonCard a ser adicionada na lista
      */
     public void addCard(PokemonCard card){
@@ -84,7 +84,7 @@ public class CardList {
     }
 
     /**
-     * Atualiza as informações de uma carta da posicao currentCardIndex na lista dada outra carta
+     * Atualiza as informacoes de uma carta da posicao currentCardIndex na lista dada outra carta
      * @param card carta do tipo PokemonCard que sobrescreve a carta atual
      */
     public void updateCard(PokemonCard card){
@@ -92,7 +92,6 @@ public class CardList {
     }
 
     /**
-     *
      * @return Inteiro com o tamanho da lista
      */
     public int getListSize(){

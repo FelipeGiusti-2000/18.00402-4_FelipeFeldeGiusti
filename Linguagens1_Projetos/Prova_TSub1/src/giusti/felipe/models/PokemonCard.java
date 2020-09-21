@@ -1,7 +1,7 @@
 package giusti.felipe.models;
 
 /**
- * Representação de uma carta de pokemon
+ * Representacao de uma carta de pokemon
  * @author Felipe Felde Giusti
  * @since 16/09/2020
  */
@@ -16,11 +16,11 @@ public class PokemonCard {
     /**
      *
      * @param id Id da carta
-     * @param imageUrl Endereço url para localizar a imagem
+     * @param imageUrl Endereco url para localizar a imagem
      * @param name Nome da carta
      * @param rarity Raridade da carta
-     * @param series Série da carta
-     * @param set Coleção da carta
+     * @param series Serie da carta
+     * @param set Colecao da carta
      */
     public PokemonCard(String id, String imageUrl, String name, String rarity, String series, String set) {
         this.id = id;
@@ -40,7 +40,6 @@ public class PokemonCard {
     }
 
     /**
-     *
      * @return String com o Id da carta
      */
     public String getId() {
@@ -48,7 +47,6 @@ public class PokemonCard {
     }
 
     /**
-     *
      * @return String com a url da imagem
      */
     public String getImageUrl() {
@@ -56,7 +54,6 @@ public class PokemonCard {
     }
 
     /**
-     *
      * @return String com o nome da carta
      */
     public String getName() {
@@ -64,7 +61,6 @@ public class PokemonCard {
     }
 
     /**
-     *
      * @return String com a raridade da carta
      */
     public String getRarity() {
@@ -72,24 +68,21 @@ public class PokemonCard {
     }
 
     /**
-     *
-     * @return String com a série da carta
+     * @return String com a serie da carta
      */
     public String getSeries() {
         return series;
     }
 
     /**
-     *
-     * @return String com a coleção da carta
+     * @return String com a colecao da carta
      */
     public String getCardSet() {
         return cardSet;
     }
 
     /**
-     *
-     * @return String contendo informações da carta
+     * @return String contendo informacoes da carta
      */
     @Override
     public String toString() {

@@ -11,8 +11,8 @@ public class Main {
         RunApplication runApplication = new RunApplication();
         runApplication.run();
 
-        TestDAO testDAO = new TestDAO();
-        testDAO.run();
+//        TestDAO testDAO = new TestDAO();
+//        testDAO.run();
 
     }
 }

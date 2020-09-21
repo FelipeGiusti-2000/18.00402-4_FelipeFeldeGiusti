@@ -6,6 +6,7 @@ import giusti.felipe.models.PokemonCard;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,7 +14,7 @@ import javafx.scene.image.ImageView;
 
 public class ControllerInterface {
     PokemonCardDAO pokemonCardDAO = new PokemonCardDAO();
-    CardList cardList = new CardList(pokemonCardDAO.getAll());;
+    CardList cardList = new CardList(pokemonCardDAO.getAll());
 
     @FXML
     private TextField txtId_Reg;
@@ -57,26 +58,38 @@ public class ControllerInterface {
     private Button btnDeleteCard;
 
     @FXML
+    private Label lblListIndex;
+
+
+    @FXML
+    public void initialize(){
+        updateCardUI();
+    }
+
+    @FXML
     public void register(){
         PokemonCard pokemonCard = new PokemonCard(
                 txtId_Reg.getText(), txtUrl_Reg.getText(), txtName_Reg.getText(),
                 txtRarity_Reg.getText(), txtSeries_Reg.getText(), txtCardSet_Reg.getText()
         );
-        pokemonCardDAO.create(pokemonCard);
 
-        cardList.addCard(pokemonCard);
+            pokemonCardDAO.create(pokemonCard);
 
-        txtId_Reg.clear();
-        txtUrl_Reg.clear();
-        txtName_Reg.clear();
-        txtRarity_Reg.clear();
-        txtSeries_Reg.clear();
-        txtCardSet_Reg.clear();
+            cardList.addCard(pokemonCard);
+
+            txtId_Reg.clear();
+            txtUrl_Reg.clear();
+            txtName_Reg.clear();
+            txtRarity_Reg.clear();
+            txtSeries_Reg.clear();
+            txtCardSet_Reg.clear();
+
     }
 
     @FXML
     public void updateCardUI(){
 
+        lblListIndex.setText(String.format("Carta: (%d / %d)",cardList.getCurrentCardIndex()+1, cardList.getListSize()));
         txtId_Card.setText(cardList.getPokemonCard().getId());
         txtUrl_Card.setText(cardList.getPokemonCard().getImageUrl());
         txtName_Card.setText(cardList.getPokemonCard().getName());
@@ -133,7 +146,7 @@ public class ControllerInterface {
         );
         pokemonCardDAO.delete(pokemonCard);
 
-        cardList.removeCard(pokemonCard);
+        cardList.removeCard();
         nextCard();
     }
 }

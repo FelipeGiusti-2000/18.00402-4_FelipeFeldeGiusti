@@ -71,6 +71,7 @@
             </VBox>
             <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="406.0" prefWidth="170.0" spacing="8.0">
                <children>
+                  <Label fx:id="lblListIndex" alignment="CENTER" contentDisplay="CENTER" text="Carta ( )" />
                   <TextField fx:id="txtId_Card" promptText="id:" />
                   <TextField fx:id="txtUrl_Card" promptText="URL Imagem:" />
                   <TextField fx:id="txtName_Card" promptText="nome:" />

@@ -1,6 +1,7 @@
 //Felipe Felde Giusti, RA: 18.00402-4
 package giusti.felipe;
 
+import giusti.felipe.tests.RunApplication;
 import giusti.felipe.tests.TestDAO;
 
 public class Main {

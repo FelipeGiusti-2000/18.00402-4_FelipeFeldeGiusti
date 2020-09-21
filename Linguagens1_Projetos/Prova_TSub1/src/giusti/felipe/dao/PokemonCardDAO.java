@@ -91,22 +91,19 @@ public class PokemonCardDAO implements DAO<PokemonCard>, DAOFields {
      * @param idToUpdate id da carta a ser atualizada
      */
     @Override
-    public void update(PokemonCard pokemonCard, String idToUpdate) {
-        try{
-            PreparedStatement preparedStatement = connection.prepareStatement(getUpdateString(getTableName()));
-            preparedStatement.setString(1,pokemonCard.getId());
-            preparedStatement.setString(2,pokemonCard.getImageUrl());
-            preparedStatement.setString(3,pokemonCard.getName());
-            preparedStatement.setString(4,pokemonCard.getRarity());
-            preparedStatement.setString(5,pokemonCard.getSeries());
-            preparedStatement.setString(6,pokemonCard.getCardSet());
-            preparedStatement.setString(7,idToUpdate);
+    public void update(PokemonCard pokemonCard, String idToUpdate) throws SQLException{
 
-            preparedStatement.executeUpdate();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+        PreparedStatement preparedStatement = connection.prepareStatement(getUpdateString(getTableName()));
+        preparedStatement.setString(1,pokemonCard.getId());
+        preparedStatement.setString(2,pokemonCard.getImageUrl());
+        preparedStatement.setString(3,pokemonCard.getName());
+        preparedStatement.setString(4,pokemonCard.getRarity());
+        preparedStatement.setString(5,pokemonCard.getSeries());
+        preparedStatement.setString(6,pokemonCard.getCardSet());
+        preparedStatement.setString(7,idToUpdate);
+
+        preparedStatement.executeUpdate();
+
     }
 
     /**
@@ -131,8 +128,7 @@ public class PokemonCardDAO implements DAO<PokemonCard>, DAOFields {
      * @param pokemonCard carta a ser criada
      */
     @Override
-    public void create(PokemonCard pokemonCard) {
-        try {
+    public void create(PokemonCard pokemonCard) throws SQLException{
             PreparedStatement preparedStatement = connection.prepareStatement(getInsertString(getTableName()));
             preparedStatement.setString(1,pokemonCard.getId());
             preparedStatement.setString(2,pokemonCard.getImageUrl());
@@ -142,11 +138,6 @@ public class PokemonCardDAO implements DAO<PokemonCard>, DAOFields {
             preparedStatement.setString(6,pokemonCard.getCardSet());
 
             preparedStatement.executeUpdate();
-        }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
     }
 
     @Override

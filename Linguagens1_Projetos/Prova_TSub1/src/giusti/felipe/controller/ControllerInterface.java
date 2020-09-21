@@ -10,6 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.sqlite.SQLiteException;
+
+import java.sql.SQLException;
 
 /**
  * Controlador da interface grafica
@@ -81,7 +84,7 @@ public class ControllerInterface {
                 txtId_Reg.getText(), txtUrl_Reg.getText(), txtName_Reg.getText(),
                 txtRarity_Reg.getText(), txtSeries_Reg.getText(), txtCardSet_Reg.getText()
         );
-
+        try{
             pokemonCardDAO.create(pokemonCard);
 
             cardList.addCard(pokemonCard);
@@ -92,6 +95,19 @@ public class ControllerInterface {
             txtRarity_Reg.clear();
             txtSeries_Reg.clear();
             txtCardSet_Reg.clear();
+        }
+        catch (SQLException throwables) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Id incorreto");
+            alert.setHeaderText("O id \'" +txtId_Reg.getText()+ "\' já foi usado.\n" +
+                    "Certifique-se que digitou o id correto.");
+            alert.showAndWait();
+
+            txtId_Reg.clear();
+            txtId_Reg.requestFocus();
+//            throwables.printStackTrace();
+        }
+
 
     }
 
@@ -126,6 +142,7 @@ public class ControllerInterface {
             imgCard.setImage(null);
             txtUrl_Card.clear();
             txtUrl_Card.requestFocus();
+
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("URL Incorreta");
             alert.setHeaderText("Certifique-se que a URL é válida.");
@@ -151,17 +168,33 @@ public class ControllerInterface {
     }
 
     /**
-     * Metodo que atualiza as informacoes de uma carta ja presente na database
+     * Metodo que atualiza as informacoes de uma carta ja presente na database e depois a UI
      */
+
     public void updateCard(){
         PokemonCard pokemonCard = new PokemonCard(
                 txtId_Card.getText(), txtUrl_Card.getText(), txtName_Card.getText(),
                 txtRarity_Card.getText(), txtSeries_Card.getText(), txtCardSet_Card.getText()
         );
-        // Mudanca no update para também atualizar o id quando necessário
-        pokemonCardDAO.update(pokemonCard, cardList.getPokemonCard().getId());
 
-        cardList.updateCard(pokemonCard);
+        try {
+            pokemonCardDAO.update(pokemonCard, cardList.getPokemonCard().getId());
+            cardList.updateCard(pokemonCard);
+
+            updateCardUI();
+        }
+        catch (SQLException throwables) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Id incorreto");
+            alert.setHeaderText("O id \'" +txtId_Card.getText()+ "\' já foi usado.\n" +
+                    "Certifique-se que digitou o id correto.");
+            alert.showAndWait();
+
+            txtId_Card.clear();
+            txtId_Card.requestFocus();
+
+//            throwables.printStackTrace();
+        }
 
     }
 

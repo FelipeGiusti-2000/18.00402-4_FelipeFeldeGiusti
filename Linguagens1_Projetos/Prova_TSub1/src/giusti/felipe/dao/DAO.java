@@ -1,5 +1,6 @@
 package giusti.felipe.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
 public interface DAO <T>{
     List<T> get(String condition);
     List<T> getAll();
-    void update(T t, String id);
+    void update(T t, String id) throws SQLException;
     void delete(T t);
-    void create(T t);
+    void create(T t) throws SQLException;
 }

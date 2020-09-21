@@ -3,6 +3,7 @@ package giusti.felipe.tests;
 import giusti.felipe.dao.PokemonCardDAO;
 import giusti.felipe.models.PokemonCard;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -78,9 +79,13 @@ public class TestDAO {
         series = scanner.next();
         System.out.println("Informe a colecao da carta:");
         cardSet = scanner.next();
-        pokemonCardDAO.update(new PokemonCard(
-                id, imageUrl, name, rarity, series, cardSet
-        ),id);
+        try {
+            pokemonCardDAO.update(new PokemonCard(
+                    id, imageUrl, name, rarity, series, cardSet
+            ),id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     /**
@@ -102,9 +107,13 @@ public class TestDAO {
         System.out.println("Informe a colecao da carta:");
         cardSet = scanner.next();
 
-        pokemonCardDAO.create(new PokemonCard(
-                id, imageUrl, name, rarity, series, cardSet
-        ));
+        try {
+            pokemonCardDAO.create(new PokemonCard(
+                    id, imageUrl, name, rarity, series, cardSet
+            ));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     /**

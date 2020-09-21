@@ -7,17 +7,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Classe que roda o teste da classe PokemonCardDAO
+ * @author Felipe Felde Giusti
+ * @since 16/09/2020
+ */
 public class TestDAO {
     private List<PokemonCard> pokemonCards;
     private PokemonCardDAO pokemonCardDAO;
     private Scanner scanner;
 
+    /**
+     * Construtor: inicializa as variáveis usadas
+     */
     public TestDAO() {
         pokemonCards = new ArrayList<>();
         pokemonCardDAO = new PokemonCardDAO();
         scanner = new Scanner(System.in);
     }
 
+    /**
+     * Inicia a aplicacao teste
+     */
     public void run(){
         boolean alive = true;
         do{
@@ -46,6 +57,9 @@ public class TestDAO {
         }while(alive);
     }
 
+    /**
+     * Atualiza os dados de uma carta na database
+     */
     private void updateCard() {
         pokemonCards = pokemonCardDAO.getAll();
         System.out.println("Id da carta para atualizar:");
@@ -69,6 +83,9 @@ public class TestDAO {
         ),id);
     }
 
+    /**
+     * Registra uma nova carta na database
+     */
     private void registerNewCard() {
         String id, imageUrl,name, rarity, series, cardSet;
         System.out.println("Cadastrando nova carta:");
@@ -90,6 +107,9 @@ public class TestDAO {
         ));
     }
 
+    /**
+     * Deleta uma carta da database
+     */
     private void deleteCard() {
         System.out.println("id da carta:");
         String id = scanner.next();
@@ -97,12 +117,18 @@ public class TestDAO {
         pokemonCardDAO.delete(new PokemonCard(id));
     }
 
+    /**
+     * imprime as cartas existentes na database
+     */
     private void printCards() {
         pokemonCards = pokemonCardDAO.getAll();
         System.out.println("Cartas:");
         pokemonCards.forEach( card -> System.out.println(card));
     }
 
+    /**
+     * Exibe um menu para escolha da opcao a ser testada
+     */
     private void menu() {
         System.out.println("\nMenu");
         System.out.println("1 - Cartas Cadastradas");

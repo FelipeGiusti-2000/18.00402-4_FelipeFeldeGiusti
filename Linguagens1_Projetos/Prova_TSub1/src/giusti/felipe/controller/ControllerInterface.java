@@ -11,10 +11,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-
+/**
+ * Controlador da interface gráfica
+ * @author Felipe Felde Giusti
+ * @since 16/09/2020
+ */
 public class ControllerInterface {
-    PokemonCardDAO pokemonCardDAO = new PokemonCardDAO();
-    CardList cardList = new CardList(pokemonCardDAO.getAll());
+    private PokemonCardDAO pokemonCardDAO = new PokemonCardDAO();
+    private CardList cardList = new CardList(pokemonCardDAO.getAll());
 
     @FXML
     private TextField txtId_Reg;
@@ -60,12 +64,17 @@ public class ControllerInterface {
     @FXML
     private Label lblListIndex;
 
-
+    /**
+     * Método carregado ao inicializar a interface com uma carta da lista
+     */
     @FXML
     public void initialize(){
         updateCardUI();
     }
 
+    /**
+     * Método que registra uma carta na database e na lista de cartas
+     */
     @FXML
     public void register(){
         PokemonCard pokemonCard = new PokemonCard(
@@ -86,6 +95,9 @@ public class ControllerInterface {
 
     }
 
+    /**
+     * Método que atualiza a interface do usuário com os dados de uma lista de carta
+     */
     @FXML
     public void updateCardUI(){
 
@@ -100,6 +112,9 @@ public class ControllerInterface {
         previewPhoto();
     }
 
+    /**
+     * Método para exibir uma imagem na tela, erros na url causam um alerta
+     */
     @FXML
     public void previewPhoto(){
         try {
@@ -118,16 +133,26 @@ public class ControllerInterface {
         }
     }
 
+    /**
+     * Avança na lista para a próxima carta e atualiza a UI com as novas informações
+     */
     public void nextCard(){
         cardList.changeToNextCardIndex();
         updateCardUI();
     }
+
+    /**
+     * Regride na lista para a última carta e atualiza a UI com as novas informações
+     */
 
     public void lastCard(){
         cardList.changeToLastCardIndex();
         updateCardUI();
     }
 
+    /**
+     * Método que atualiza as informações de uma carta já presente na database
+     */
     public void updateCard(){
         PokemonCard pokemonCard = new PokemonCard(
                 txtId_Card.getText(), txtUrl_Card.getText(), txtName_Card.getText(),
@@ -139,6 +164,10 @@ public class ControllerInterface {
         cardList.updateCard(pokemonCard);
 
     }
+
+    /**
+     * Método que deleta uma carta ja presente na database
+     */
     public void deleteCard(){
         PokemonCard pokemonCard = new PokemonCard(
                 txtId_Card.getText(), txtUrl_Card.getText(), txtName_Card.getText(),

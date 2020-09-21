@@ -7,12 +7,24 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Classe que roda a aplicacao com interface gráfica
+ * @author Felipe Felde Giusti
+ * @since 16/09/2020
+ */
 public class RunApplication extends Application {
+    /**
+     * Método que começa a aplicação
+     */
     public void run(){
-
         launch();
     }
 
+    /**
+     * Método que usa as classes do controller e viewer para inicializar a aplicação
+     * @param primaryStage Stage primário da aplicacao
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
 

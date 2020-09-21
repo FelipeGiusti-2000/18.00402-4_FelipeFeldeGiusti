@@ -2,6 +2,11 @@ package giusti.felipe.models;
 
 import java.util.List;
 
+/**
+ * Representação de uma lista de cartas de pokemon
+ * @author Felipe Felde Giusti
+ * @since 16/09/2020
+ */
 public class CardList {
     private int currentCardIndex;
     private List<PokemonCard> pokemonCards;

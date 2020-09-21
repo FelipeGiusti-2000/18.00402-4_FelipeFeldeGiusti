@@ -6,10 +6,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe que faz a comunicação com o banco de dados de uma carta pokemon
+ * @author Felipe Felde Giusti
+ * @since 16/09/2020
+ */
 public class PokemonCardDAO implements DAO<PokemonCard>, DAOFields {
     private Connection connection;
     private String myDBConnectionString = "jdbc:sqlite:card_data.db";
 
+    /**
+     * Inicializa a conexão com o banco de dados
+     */
     public PokemonCardDAO(){
         try {
             connection = DriverManager.getConnection(myDBConnectionString);
@@ -18,6 +26,11 @@ public class PokemonCardDAO implements DAO<PokemonCard>, DAOFields {
         }
     }
 
+    /**
+     *
+     * @param condition String com a condicao desejada, codificada em SQLite
+     * @return Lista de cartas do tipo List com dados do banco de dados
+     */
     @Override
     public List<PokemonCard> get(String condition) {
         List<PokemonCard> pokemonCards = new ArrayList<>();
@@ -43,6 +56,10 @@ public class PokemonCardDAO implements DAO<PokemonCard>, DAOFields {
         return pokemonCards;
     }
 
+    /**
+     *
+     * @return Lista de cartas do tipo List com todas as informações do banco de dados
+     */
     @Override
     public List<PokemonCard> getAll() {
         List<PokemonCard> pokemonCards = new ArrayList<>();
@@ -68,6 +85,11 @@ public class PokemonCardDAO implements DAO<PokemonCard>, DAOFields {
         return pokemonCards;
     }
 
+    /**
+     * Atualiza o banco de dados a partir do id de uma carta
+     * @param pokemonCard Carta do tipo PokemonCard com as informações que atualizarão a carta
+     * @param idToUpdate id da carta a ser atualizada
+     */
     @Override
     public void update(PokemonCard pokemonCard, String idToUpdate) {
         try{
@@ -87,6 +109,10 @@ public class PokemonCardDAO implements DAO<PokemonCard>, DAOFields {
         }
     }
 
+    /**
+     * Deleta uma carta do banco de dados
+     * @param pokemonCard carta a ser deletada
+     */
     @Override
     public void delete(PokemonCard pokemonCard) {
         try {
@@ -100,6 +126,10 @@ public class PokemonCardDAO implements DAO<PokemonCard>, DAOFields {
         }
     }
 
+    /**
+     * Cria uma carta no banco de dados
+     * @param pokemonCard carta a ser criada
+     */
     @Override
     public void create(PokemonCard pokemonCard) {
         try {
@@ -118,7 +148,6 @@ public class PokemonCardDAO implements DAO<PokemonCard>, DAOFields {
         }
 
     }
-
 
     @Override
     public String getTableName() {

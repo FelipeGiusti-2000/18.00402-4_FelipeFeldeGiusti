@@ -12,6 +12,9 @@ public class Anime {
         this.episodes = episodes;
         this.score = score;
     }
+    public Anime(){
+
+    }
 
     @Override
     public String toString() {

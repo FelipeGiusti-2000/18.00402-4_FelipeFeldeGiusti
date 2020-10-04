@@ -1,19 +1,22 @@
 package giusti.felipe.testes;
 
 import giusti.felipe.apiHandler.RequestAnimeAPI;
-import giusti.felipe.apiHandler.RequestMangaAPI;
+import giusti.felipe.models.Anime;
 import giusti.felipe.parsers.AnimeJsonParser;
 
-public class testesApi {
+public class testeJson {
     public static void main(String[] args) {
-        try {
-            RequestAnimeAPI.getFromApi("dungeon");
+        try{
+            String x = RequestAnimeAPI.getFromApi("Hyouka");
+            Anime resAnime = AnimeJsonParser.getAnimeFromJSON(x);
 
-            //RequestMangaAPI.getFromApi("Haikyuu!!");
+            System.out.println(resAnime.toString());
         }
         catch(Exception e){
-            System.out.println("\n\n\nErro\n\n\n");
             e.printStackTrace();
         }
+
     }
+
+
 }

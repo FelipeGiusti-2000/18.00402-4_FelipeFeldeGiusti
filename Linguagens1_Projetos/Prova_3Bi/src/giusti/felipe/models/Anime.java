@@ -23,6 +23,27 @@ public class Anime {
 //        return id;
 //    }
 
+
+    public String getName() {
+        return name;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    public int getEpisodes() {
+        return episodes;
+    }
+
+    public float getScore() {
+        return score;
+    }
+
     @Override
     public String toString() {
         return "Anime{" +

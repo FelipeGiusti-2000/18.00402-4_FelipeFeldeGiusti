@@ -1,16 +1,16 @@
 package giusti.felipe.dao;
 
-import giusti.felipe.models.Anime;
+import giusti.felipe.models.Manga;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnimeDAO implements DAO<Anime>, DAOFields{
+public class MangaDAO implements DAO<Manga>,DAOFields{
     private Connection connection;
     private final String myDBConnectionString = "jdbc:sqlite:p3Bi.db";
 
-    AnimeDAO(){
+    MangaDAO(){
         try {
             connection = DriverManager.getConnection(myDBConnectionString);
         } catch (SQLException throwables) {
@@ -19,44 +19,48 @@ public class AnimeDAO implements DAO<Anime>, DAOFields{
     }
 
     @Override
-    public List<Anime> get(String condition) {
-        List<Anime> animeList = new ArrayList<>();
+    public List<Manga> get(String condition) {
+        List<Manga> mangaList = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(getSelectConditionalString(getTableName())+condition);
             while(resultSet.next()){
-                Anime anime = new Anime(
+                Manga manga = new Manga(
                         resultSet.getString("imageUrl"),
                         resultSet.getString("name"),
                         resultSet.getString("synopsis"),
-                        resultSet.getInt("episodes"),
+                        resultSet.getInt("chapters"),
+                        resultSet.getInt("volumes"),
+                        resultSet.getString("type"),
                         resultSet.getFloat("score")
                 );
-                animeList.add(anime);
+                mangaList.add(manga);
             }
             resultSet.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return animeList;
+        return mangaList;
     }
 
     @Override
-    public List<Anime> getAll() {
-        List<Anime> animeList = new ArrayList<>();
+    public List<Manga> getAll() {
+        List<Manga> mangaList = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(getSelectAllString(getTableName()));
             while(resultSet.next()){
-                Anime anime = new Anime(
+                Manga manga = new Manga(
                         resultSet.getString("imageUrl"),
                         resultSet.getString("name"),
                         resultSet.getString("synopsis"),
-                        resultSet.getInt("episodes"),
+                        resultSet.getInt("chapters"),
+                        resultSet.getInt("volumes"),
+                        resultSet.getString("type"),
                         resultSet.getFloat("score")
                 );
-                animeList.add(anime);
+                mangaList.add(manga);
             }
             resultSet.close();
 
@@ -64,14 +68,14 @@ public class AnimeDAO implements DAO<Anime>, DAOFields{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return animeList;
+        return mangaList;
     }
 
     @Override
-    public void delete(Anime anime) {
+    public void delete(Manga manga) {
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(getDeleteString(getTableName()));
-            preparedStatement.setString(1, anime.getName());
+            preparedStatement.setString(1, manga.getName());
             preparedStatement.executeUpdate();
         }
         catch(Exception e){
@@ -80,15 +84,16 @@ public class AnimeDAO implements DAO<Anime>, DAOFields{
     }
 
     @Override
-    public void insert(Anime anime) {
-        PreparedStatement preparedStatement = null;
+    public void insert(Manga manga) {
         try {
-            preparedStatement = connection.prepareStatement(getInsertString(getTableName()));
-            preparedStatement.setString(1,anime.getImageUrl());
-            preparedStatement.setString(2,anime.getName());
-            preparedStatement.setString(3,anime.getSynopsis());
-            preparedStatement.setInt(4,anime.getEpisodes());
-            preparedStatement.setFloat(5,anime.getScore());
+            PreparedStatement preparedStatement = connection.prepareStatement(getInsertString(getTableName()));
+            preparedStatement.setString(1,manga.getImageUrl());
+            preparedStatement.setString(2,manga.getName());
+            preparedStatement.setString(3,manga.getSynopsis());
+            preparedStatement.setInt(4,manga.getChapters());
+            preparedStatement.setInt(5,manga.getVolumes());
+            preparedStatement.setString(6,manga.getType());
+            preparedStatement.setFloat(7,manga.getScore());
 
             preparedStatement.executeUpdate();
 
@@ -100,7 +105,7 @@ public class AnimeDAO implements DAO<Anime>, DAOFields{
 
     @Override
     public String getTableName() {
-        return "anime";
+        return "manga";
     }
 
     @Override
@@ -110,7 +115,7 @@ public class AnimeDAO implements DAO<Anime>, DAOFields{
 
     @Override
     public String getInsertString(String table) {
-        return "INSERT INTO " + table + " (imageUrl, name, synopsis, episodes, score) VALUES (?,?,?,?,?);";
+        return "INSERT INTO " + table + " (imageUrl, name, synopsis, chapters, volumes, type, score) VALUES (?,?,?,?,?,?,?);";
     }
 
     @Override
@@ -123,3 +128,4 @@ public class AnimeDAO implements DAO<Anime>, DAOFields{
         return "SELECT * FROM "+table+" WHERE ";
     }
 }
+

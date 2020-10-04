@@ -29,6 +29,30 @@ public class Manga {
         return name;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getChapters() {
+        return chapters;
+    }
+
+    public int getVolumes() {
+        return volumes;
+    }
+
+    public float getScore() {
+        return score;
+    }
+
     @Override
     public String toString() {
         return "Manga{" +

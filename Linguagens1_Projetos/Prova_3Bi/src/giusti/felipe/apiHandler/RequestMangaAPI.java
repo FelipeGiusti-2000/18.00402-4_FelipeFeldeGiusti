@@ -5,7 +5,18 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+/**
+ * Classe que faz a requisicao de um manga pela api
+ * @author Felipe Felde Giusti
+ * @since 03/10/2020
+ */
 public class RequestMangaAPI {
+    /**
+     * Faz o request de um manga para a api e retorna o json obtido
+     * @param name nome do manga a ser pesquisado
+     * @return json da api
+     * @throws Exception ocorreu um erro, joga o erro para ser tratado futuramente
+     */
     public static String getFromApi(String name) throws Exception{
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder().GET()

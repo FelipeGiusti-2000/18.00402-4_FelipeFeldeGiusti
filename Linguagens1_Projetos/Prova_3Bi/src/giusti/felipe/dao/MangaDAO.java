@@ -6,10 +6,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe que faz a comunicacao com o banco de dados do manga
+ * @author Felipe Felde Giusti
+ * @since 03/10/2020
+ */
 public class MangaDAO implements DAO<Manga>,DAOFields{
     private Connection connection;
     private final String myDBConnectionString = "jdbc:sqlite:p3Bi.db";
 
+    /**
+     * Inicializa a conexao com o banco de dados
+     */
     public MangaDAO(){
         try {
             connection = DriverManager.getConnection(myDBConnectionString);
@@ -17,7 +25,11 @@ public class MangaDAO implements DAO<Manga>,DAOFields{
             throwables.printStackTrace();
         }
     }
-
+    /**
+     * Gera uma lista de mangas a partir de uma condicao
+     * @param condition String com condicao desejada, codificada em SQLite
+     * @return Lista de mangas do tipo List com dados do banco de dados
+     */
     @Override
     public List<Manga> get(String condition) {
         List<Manga> mangaList = new ArrayList<>();
@@ -43,7 +55,10 @@ public class MangaDAO implements DAO<Manga>,DAOFields{
         }
         return mangaList;
     }
-
+    /**
+     * Retorna uma lista de mangas com todos os dados da database
+     * @return Lista de mangas do tipo List com todas as informações do banco de dados
+     */
     @Override
     public List<Manga> getAll() {
         List<Manga> mangaList = new ArrayList<>();
@@ -70,7 +85,10 @@ public class MangaDAO implements DAO<Manga>,DAOFields{
         }
         return mangaList;
     }
-
+    /**
+     * Deleta um manga do banco de dados
+     * @param manga manga a ser deletado
+     */
     @Override
     public void delete(Manga manga) {
         try{
@@ -82,7 +100,10 @@ public class MangaDAO implements DAO<Manga>,DAOFields{
             e.printStackTrace();
         }
     }
-
+    /**
+     * insere um manga no banco de dados
+     * @param manga manga a ser inserido
+     */
     @Override
     public void insert(Manga manga) {
         try {

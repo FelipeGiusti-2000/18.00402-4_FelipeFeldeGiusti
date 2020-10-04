@@ -6,10 +6,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe que faz a comunicacao com o banco de dados do anime
+ * @author Felipe Felde Giusti
+ * @since 03/10/2020
+ */
 public class AnimeDAO implements DAO<Anime>, DAOFields{
     private Connection connection;
     private final String myDBConnectionString = "jdbc:sqlite:p3Bi.db";
 
+    /**
+     * Inicializa a conexao com o banco de dados
+     */
     public AnimeDAO(){
         try {
             connection = DriverManager.getConnection(myDBConnectionString);
@@ -18,6 +26,11 @@ public class AnimeDAO implements DAO<Anime>, DAOFields{
         }
     }
 
+    /**
+     * Gera uma lista de animes a partir de uma condicao
+     * @param condition String com condicao desejada, codificada em SQLite
+     * @return Lista de animes do tipo List com dados do banco de dados
+     */
     @Override
     public List<Anime> get(String condition) {
         List<Anime> animeList = new ArrayList<>();
@@ -43,6 +56,10 @@ public class AnimeDAO implements DAO<Anime>, DAOFields{
         return animeList;
     }
 
+    /**
+     * Retorna uma lista de animes com todos os dados da database
+     * @return Lista de animes do tipo List com todas as informações do banco de dados
+     */
     @Override
     public List<Anime> getAll() {
         List<Anime> animeList = new ArrayList<>();
@@ -68,6 +85,10 @@ public class AnimeDAO implements DAO<Anime>, DAOFields{
         return animeList;
     }
 
+    /**
+     * Deleta um anime do banco de dados
+     * @param anime anime a ser deletada
+     */
     @Override
     public void delete(Anime anime) {
         try{
@@ -80,6 +101,10 @@ public class AnimeDAO implements DAO<Anime>, DAOFields{
         }
     }
 
+    /**
+     * insere um anime no banco de dados
+     * @param anime anime a ser inserido
+     */
     @Override
     public void insert(Anime anime) {
         PreparedStatement preparedStatement = null;

@@ -1,11 +1,13 @@
 package giusti.felipe.tests;
 
 import giusti.felipe.apiHandler.RequestAnimeAPI;
+import giusti.felipe.apiHandler.RequestMangaAPI;
 import giusti.felipe.dao.AnimeDAO;
 import giusti.felipe.dao.MangaDAO;
 import giusti.felipe.models.Anime;
 import giusti.felipe.models.Manga;
 import giusti.felipe.parsers.AnimeJsonParser;
+import giusti.felipe.parsers.MangaJsonParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +49,7 @@ public class Application {
                     searchAnime();
                     break;
                 case 2:
-//                    searchManga();
+                    searchManga();
                     break;
                 case 3:
                     showAnimes();
@@ -55,8 +57,6 @@ public class Application {
                 case 4:
                     showMangas();
                     break;
-                case 5:
-                    deleteAnime();
             }
         }
         while(loop);
@@ -83,7 +83,7 @@ public class Application {
                         System.out.println(anime.toString());
                     }
                     else{
-                        System.out.println("Anime ja adicionado na database");
+                        System.out.println("O Anime ja foi adicionado na database");
                     }
                 }
                 else{
@@ -92,13 +92,12 @@ public class Application {
 
             } catch (Exception exception) {
                 System.out.println("Houve um erro ao buscar pelo anime desejado!\n");
-                exception.printStackTrace();
+//                exception.printStackTrace();
             }
         }
 
     }
     public boolean searchAnimeDB(String name){
-        // Alternativa é dar get direto em name e se der erro eu faco o retorno false
         animeList = animeDAO.get("name LIKE \"" + name + "\"");
 
         if(!animeList.isEmpty()){
@@ -106,21 +105,57 @@ public class Application {
             return true;
         }
         else{
-            System.out.println("Anime não encontrado no banco de dados");
+            System.out.println("Anime nao encontrado no banco de dados");
             return false;
         }
 
     }
 
     public void searchManga(){
+        System.out.println("Digite o nome do manga: ");
+        String name = scanner.next();
+        name += scanner.nextLine();
 
+        if(searchMangaDB(name)){
+            mangaList = mangaDAO.get("name LIKE \"" + name + "\"");
+            mangaList.forEach(manga-> System.out.println(manga.toString()));
+        }
+        else{     // Não achou na database
+            try {
+                String jsonManga = RequestMangaAPI.getFromApi(name);
+
+                Manga manga = MangaJsonParser.getMangaFromJSON(jsonManga);
+                if(!manga.getName().equals("null")){
+                    if(!searchMangaDB(manga.getName())){     //Não achou nome no database
+                        mangaDAO.insert(manga);
+                        System.out.println("Manga adicionado na database:");
+                        System.out.println(manga.toString());
+                    }
+                    else{
+                        System.out.println("Esse manga ja foi adicionado na database");
+                    }
+                }
+                else{
+                    System.out.println("Manga com nome especifico nao encontrado!");
+                }
+
+            } catch (Exception exception) {
+                System.out.println("Houve um erro ao buscar pelo manga desejado!\n");
+//                exception.printStackTrace();
+            }
+        }
     }
 
-    public void deleteAnime(){
-        String x = scanner.next();
-        x += scanner.nextLine();
-        Anime anime = new Anime(x);
-        animeDAO.delete(anime);
+    public boolean searchMangaDB(String name) {
+        mangaList = mangaDAO.get("name LIKE \"" + name + "\"");
+
+        if (!mangaList.isEmpty()) {
+            System.out.println("Manga encontrado no banco de dados");
+            return true;
+        } else {
+            System.out.println("Manga nao encontrado no banco de dados");
+            return false;
+        }
     }
 
     public void showAnimes(){

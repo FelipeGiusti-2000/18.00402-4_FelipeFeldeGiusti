@@ -7,7 +7,7 @@ public class MangaJsonParser {
     public static Manga getMangaFromJSON(String json) {
         JSONObject mangaJson = new JSONObject(json);
         if (mangaJson.getBoolean("request_cached")) {
-            System.out.println("Manga encontrado!");
+            System.out.println("Manga encontrado pelo request!");
             return new Manga(
                     mangaJson.getJSONArray("results").getJSONObject(0).getString("image_url"),
                     mangaJson.getJSONArray("results").getJSONObject(0).getString("title"),
@@ -19,7 +19,7 @@ public class MangaJsonParser {
             );
         }
         else {
-            System.out.println("Manga não encontrado! Certifique-se que digitou o nome corretamente.");
+            System.out.println("Manga não encontrado pelo request! Certifique-se que digitou o nome corretamente.");
             return new Manga();
         }
     }

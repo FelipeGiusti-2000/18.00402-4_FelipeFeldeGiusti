@@ -9,7 +9,8 @@ public class RequestMangaAPI {
     public static String getFromApi(String name) throws Exception{
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder().GET()
-                .uri(URI.create("https://api.jikan.moe/v3/search/manga?q="+name)).build();
+                .uri(URI.create("https://api.jikan.moe/v3/search/manga?q="
+                        +name.replace(" ","%20"))).build();
         HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
 //        System.out.println("Status Code:" + response.statusCode());

@@ -17,7 +17,7 @@ public class Manga {
         this.score = score;
     }
     public Manga(){
-
+        this.name = "null";
     }
 
 //    public static int getId() {

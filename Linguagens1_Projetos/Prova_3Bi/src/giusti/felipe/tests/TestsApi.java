@@ -1,10 +1,8 @@
-package giusti.felipe.testes;
+package giusti.felipe.tests;
 
-import giusti.felipe.apiHandler.RequestAnimeAPI;
 import giusti.felipe.apiHandler.RequestMangaAPI;
-import giusti.felipe.parsers.AnimeJsonParser;
 
-public class TestesApi {
+public class TestsApi {
     public static void main(String[] args) {
         try {
             //RequestAnimeAPI.getFromApi("dungeon");

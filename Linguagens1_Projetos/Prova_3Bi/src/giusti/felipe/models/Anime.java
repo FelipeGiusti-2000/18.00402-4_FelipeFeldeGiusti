@@ -16,7 +16,10 @@ public class Anime {
     }
 
     public Anime() {
-
+        this.name = "null";
+    }
+    public Anime(String name){
+        this.name = name;
     }
 
 //    public static int getId() {

@@ -10,7 +10,7 @@ public class MangaDAO implements DAO<Manga>,DAOFields{
     private Connection connection;
     private final String myDBConnectionString = "jdbc:sqlite:p3Bi.db";
 
-    MangaDAO(){
+    public MangaDAO(){
         try {
             connection = DriverManager.getConnection(myDBConnectionString);
         } catch (SQLException throwables) {

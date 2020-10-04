@@ -7,7 +7,7 @@ public class AnimeJsonParser {
     public static Anime getAnimeFromJSON(String json) {
         JSONObject animeJson = new JSONObject(json);
         if (animeJson.getBoolean("request_cached")) {
-            System.out.println("Anime encontrado!");
+            System.out.println("Anime encontrado pelo request!");
             return new Anime(
                 animeJson.getJSONArray("results").getJSONObject(0).getString("image_url"),
                 animeJson.getJSONArray("results").getJSONObject(0).getString("title"),
@@ -17,7 +17,7 @@ public class AnimeJsonParser {
             );
         }
         else {
-            System.out.println("Anime não encontrado! Certifique-se que digitou o nome corretamente.");
+            System.out.println("Anime não encontrado pelo request! Certifique-se que digitou o nome corretamente.");
             return new Anime();
         }
     }

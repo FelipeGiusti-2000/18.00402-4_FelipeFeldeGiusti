@@ -10,7 +10,7 @@ public class AnimeDAO implements DAO<Anime>, DAOFields{
     private Connection connection;
     private final String myDBConnectionString = "jdbc:sqlite:p3Bi.db";
 
-    AnimeDAO(){
+    public AnimeDAO(){
         try {
             connection = DriverManager.getConnection(myDBConnectionString);
         } catch (SQLException throwables) {
@@ -23,7 +23,7 @@ public class AnimeDAO implements DAO<Anime>, DAOFields{
         List<Anime> animeList = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(getSelectConditionalString(getTableName())+condition);
+            ResultSet resultSet = statement.executeQuery(getSelectConditionalString(getTableName()) + condition);
             while(resultSet.next()){
                 Anime anime = new Anime(
                         resultSet.getString("imageUrl"),
@@ -37,6 +37,7 @@ public class AnimeDAO implements DAO<Anime>, DAOFields{
             resultSet.close();
 
         } catch (SQLException e) {
+            System.out.println("Erro ao pegar da database");
             e.printStackTrace();
         }
         return animeList;

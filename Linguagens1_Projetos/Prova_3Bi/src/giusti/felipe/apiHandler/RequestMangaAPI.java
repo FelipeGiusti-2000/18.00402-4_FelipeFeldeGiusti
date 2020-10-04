@@ -12,9 +12,9 @@ public class RequestMangaAPI {
                 .uri(URI.create("https://api.jikan.moe/v3/search/manga?q="+name)).build();
         HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
-        System.out.println("Status Code:" + response.statusCode());
-        System.out.println("Recebidos:");
-        System.out.println(response.body());
+//        System.out.println("Status Code:" + response.statusCode());
+//        System.out.println("Recebidos:");
+//        System.out.println(response.body());
 
         return response.body();
     }

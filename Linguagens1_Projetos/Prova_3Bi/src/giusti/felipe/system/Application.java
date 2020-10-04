@@ -100,6 +100,7 @@ public class Application {
                     }
                     else{
                         System.out.println("O Anime ja foi adicionado na database");
+                        System.out.println(anime.toString());
                     }
                 }
                 else{
@@ -160,6 +161,7 @@ public class Application {
                     }
                     else{
                         System.out.println("Esse manga ja foi adicionado na database");
+                        System.out.println(manga.toString());
                     }
                 }
                 else{

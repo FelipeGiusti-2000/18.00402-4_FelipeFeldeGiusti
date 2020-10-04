@@ -1,13 +1,13 @@
 package giusti.felipe.models;
 
 public class Anime {
-    private static int id;
+//    private static int id;
     private String imageUrl, name, synopsis;
     private int episodes;
     private float score;
 
     public Anime(String imageUrl, String name, String synopsis, int episodes, float score) {
-        id++;
+//        id++;
         this.imageUrl = imageUrl;
         this.name = name;
         this.synopsis = synopsis;
@@ -19,14 +19,14 @@ public class Anime {
 
     }
 
-    public static int getId() {
-        return id;
-    }
+//    public static int getId() {
+//        return id;
+//    }
 
     @Override
     public String toString() {
         return "Anime{" +
-                "id=" + id +
+//                "id=" + id +
                 "imageUrl='" + imageUrl + '\'' +
                 ", name='" + name + '\'' +
                 ", synopsis='" + synopsis + '\'' +

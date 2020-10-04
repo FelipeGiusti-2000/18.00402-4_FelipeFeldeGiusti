@@ -5,7 +5,7 @@ public class Manga {
     private int chapters, volumes;
     private float score;
 
-    public Manga(String imageUrl, String name, String synopsis, String type, int chapters, int volumes, float score) {
+    public Manga(String imageUrl, String name, String synopsis, int chapters, int volumes, String type, float score) {
         this.imageUrl = imageUrl;
         this.name = name;
         this.synopsis = synopsis;
@@ -13,6 +13,9 @@ public class Manga {
         this.chapters = chapters;
         this.volumes = volumes;
         this.score = score;
+    }
+    public Manga(){
+
     }
 
     @Override

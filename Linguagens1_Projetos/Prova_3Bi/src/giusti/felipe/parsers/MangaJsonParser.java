@@ -19,7 +19,7 @@ public class MangaJsonParser {
             );
         }
         else {
-            System.out.println("Manga não encontrado! certifique-se que digitou o nome corretamente.");
+            System.out.println("Manga não encontrado! Certifique-se que digitou o nome corretamente.");
             return new Manga();
         }
     }

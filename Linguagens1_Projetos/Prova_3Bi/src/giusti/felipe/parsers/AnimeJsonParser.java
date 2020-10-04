@@ -17,7 +17,7 @@ public class AnimeJsonParser {
             );
         }
         else {
-            System.out.println("Anime não encontrado! certifique-se que digitou o nome corretamente.");
+            System.out.println("Anime não encontrado! Certifique-se que digitou o nome corretamente.");
             return new Anime();
         }
     }

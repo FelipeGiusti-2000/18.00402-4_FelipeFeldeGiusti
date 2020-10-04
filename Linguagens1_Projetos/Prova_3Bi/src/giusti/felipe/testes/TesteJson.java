@@ -7,7 +7,7 @@ import giusti.felipe.models.Manga;
 import giusti.felipe.parsers.AnimeJsonParser;
 import giusti.felipe.parsers.MangaJsonParser;
 
-public class testeJson {
+public class TesteJson {
     public static void main(String[] args) {
         try{
 //            String x = RequestAnimeAPI.getFromApi("Hyouka");

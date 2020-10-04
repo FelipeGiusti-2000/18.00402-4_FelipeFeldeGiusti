@@ -4,6 +4,11 @@ import giusti.felipe.apiHandler.RequestMangaAPI;
 import giusti.felipe.models.Manga;
 import giusti.felipe.parsers.MangaJsonParser;
 
+/**
+ * Classe de teste para as operacoes de json
+ * @author Felipe Felde Giusti
+ * @since 03/10/2020
+ */
 public class TestJson {
     public static void main(String[] args) {
         try{

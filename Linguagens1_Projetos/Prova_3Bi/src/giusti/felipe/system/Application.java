@@ -13,6 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Classe com aplicacao principal do sistema
+ * @author Felipe Felde Giusti
+ * @since 03/10/2020
+ */
 public class Application {
     private List<Anime> animeList;
     private List<Manga> mangaList;
@@ -20,6 +25,9 @@ public class Application {
     private MangaDAO mangaDAO;
     private Scanner scanner;
 
+    /**
+     * Inicializacao das variaveis usadas
+     */
     public Application(){
         animeList = new ArrayList<>();
         mangaList = new ArrayList<>();
@@ -28,6 +36,9 @@ public class Application {
         scanner = new Scanner(System.in);
     }
 
+    /**
+     * roda a aplicacao
+     */
     public void run(){
 
         boolean loop = true;
@@ -62,6 +73,11 @@ public class Application {
         while(loop);
     }
 
+    /**
+     *  Procura anime inicialmente na database e depois na api
+     *  Para encontrar na database, o nome deve ser parecido.
+     *  Na api o nome pode ser similar, sendo adicionado na database caso ja nao esteja adicionado
+     */
     public void searchAnime(){
         System.out.println("Digite o nome do anime: ");
         String name = scanner.next();
@@ -97,6 +113,12 @@ public class Application {
         }
 
     }
+
+    /**
+     * Procura o anime na database
+     * @param name nome a ser procurado
+     * @return valor boolean true se for encontrado e false se nao for
+     */
     public boolean searchAnimeDB(String name){
         animeList = animeDAO.get("name LIKE \"" + name + "\"");
 
@@ -111,6 +133,11 @@ public class Application {
 
     }
 
+    /**
+     *  Procura manga inicialmente na database e depois na api
+     *  Para encontrar na database, o nome deve ser parecido.
+     *  Na api o nome é buscado, sendo adicionado na database caso ja nao esteja adicionado
+     */
     public void searchManga(){
         System.out.println("Digite o nome do manga: ");
         String name = scanner.next();
@@ -146,6 +173,11 @@ public class Application {
         }
     }
 
+    /**
+     * Procura um manga na database
+     * @param name nome a ser procurado
+     * @return valor Boolean, true se for encontrado e false se nao for
+     */
     public boolean searchMangaDB(String name) {
         mangaList = mangaDAO.get("name LIKE \"" + name + "\"");
 
@@ -158,16 +190,25 @@ public class Application {
         }
     }
 
+    /**
+     * Exibe todos os animes da database
+     */
     public void showAnimes(){
         animeList = animeDAO.getAll();
         animeList.forEach(anime-> System.out.println(anime));
     }
 
+    /**
+     * Exibe todos os mangas da database
+     */
     public void showMangas(){
         mangaList = mangaDAO.getAll();
         mangaList.forEach(manga-> System.out.println(manga));
     }
 
+    /**
+     * Exibe um menu para escolher o desejado
+     */
     public void menu(){
         System.out.println("\n=--=--= MENU PRINCIPAL =--=--=");
         System.out.println("1- Procurar Anime");

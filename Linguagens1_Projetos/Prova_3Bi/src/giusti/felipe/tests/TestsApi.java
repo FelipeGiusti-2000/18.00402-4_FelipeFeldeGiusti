@@ -2,6 +2,9 @@ package giusti.felipe.tests;
 
 import giusti.felipe.apiHandler.RequestMangaAPI;
 
+/**
+ * Classe de teste para as operacoes da api
+ */
 public class TestsApi {
     public static void main(String[] args) {
         try {

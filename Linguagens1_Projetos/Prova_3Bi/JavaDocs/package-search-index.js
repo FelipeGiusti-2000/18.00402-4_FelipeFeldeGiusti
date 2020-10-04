@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"giusti.felipe"},{"l":"giusti.felipe.apiHandler"},{"l":"giusti.felipe.dao"},{"l":"giusti.felipe.models"},{"l":"giusti.felipe.parsers"},{"l":"giusti.felipe.system"},{"l":"giusti.felipe.tests"}]

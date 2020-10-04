@@ -1,7 +1,6 @@
 package giusti.felipe;
 
-import giusti.felipe.apiHandler.RequestMangaAPI;
-import giusti.felipe.tests.Application;
+import giusti.felipe.system.Application;
 
 public class Main {
 

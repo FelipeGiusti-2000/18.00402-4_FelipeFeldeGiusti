@@ -1,4 +1,4 @@
-package giusti.felipe.tests;
+package giusti.felipe.system;
 
 import giusti.felipe.apiHandler.RequestAnimeAPI;
 import giusti.felipe.apiHandler.RequestMangaAPI;

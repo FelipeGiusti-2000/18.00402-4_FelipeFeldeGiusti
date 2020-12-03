@@ -12,9 +12,10 @@ class RandomImageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text("Segunda tela"),),
+        appBar: AppBar(),
         body: Column(
           children: [
+            Expanded(child: new Image.network(url)),
             ElevatedButton.icon(
               onPressed:(){
                 print(url);

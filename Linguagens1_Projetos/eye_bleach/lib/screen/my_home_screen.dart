@@ -1,4 +1,6 @@
+import 'package:eye_bleach/models/random_dog.dart';
 import 'package:eye_bleach/screen/random_image_screen.dart';
+import 'package:eye_bleach/utilities/network_helper.dart';
 import 'package:flutter/material.dart';
 
 class MyHomeScreen extends StatelessWidget {
@@ -14,12 +16,15 @@ class MyHomeScreen extends StatelessWidget {
           children: [
             Expanded(child: new Image.asset(_homeScreenImage)),
             ElevatedButton.icon(
-              onPressed:(){
-                searchNewPicture();
+              onPressed:() async{
+                var requisicao = NetworkHelper(url:"https://random.dog/woof.json");
+                var dados = RandomDog.fromJson(await requisicao.getData());
+                String imageUrl = dados.url;
+
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (BuildContext context) => RandomImageScreen(url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ATest-Logo.svg&psig=AOvVaw0oIrlD3rvYAvmkWXXVJ6tc&ust=1607039218673000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJCSrem9sO0CFQAAAAAdAAAAABAD"),
+                    builder: (BuildContext context) => RandomImageScreen(url: imageUrl),
                   ),
                 );
               },
@@ -32,7 +37,9 @@ class MyHomeScreen extends StatelessWidget {
     );
   }
 
-  void searchNewPicture() {
-    print("Indo para outra tela");
+  Future<String> searchImageUrl() async {
+    var requisicao = NetworkHelper(url:"https://random.dog/woof.json");
+    var dados = RandomDog.fromJson(await requisicao.getData());
+    return dados.url;
   }
 }

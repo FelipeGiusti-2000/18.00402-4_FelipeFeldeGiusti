@@ -1,26 +1,26 @@
 class RandomDog {
-  int _fileSizeBytes;
-  String _url;
+  String _message;
+  String _status;
 
-  RandomDog({int fileSizeBytes, String url}) {
-    this._fileSizeBytes = fileSizeBytes;
-    this._url = url;
+  RandomDog({String message, String status}) {
+    this._message = message;
+    this._status = status;
   }
 
-  int get fileSizeBytes => _fileSizeBytes;
-  set fileSizeBytes(int fileSizeBytes) => _fileSizeBytes = fileSizeBytes;
-  String get url => _url;
-  set url(String url) => _url = url;
+  String get message => _message;
+  set message(String message) => _message = message;
+  String get status => _status;
+  set status(String status) => _status = status;
 
   RandomDog.fromJson(Map<String, dynamic> json) {
-    _fileSizeBytes = json['fileSizeBytes'];
-    _url = json['url'];
+    _message = json['message'];
+    _status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['fileSizeBytes'] = this._fileSizeBytes;
-    data['url'] = this._url;
+    data['message'] = this._message;
+    data['status'] = this._status;
     return data;
   }
 }

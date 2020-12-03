@@ -17,16 +17,12 @@ class MyHomeScreen extends StatelessWidget {
             Expanded(child: new Image.asset(_homeScreenImage)),
             ElevatedButton.icon(
               onPressed:() async{
-                var requisicao = NetworkHelper(url:"https://random.dog/woof.json");
+                var requisicao = NetworkHelper(url:"https://dog.ceo/api/breeds/image/random");
                 var dados = RandomDog.fromJson(await requisicao.getData());
-                String imageUrl = dados.url;
+                String imageUrl = dados.message;
 
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => RandomImageScreen(url: imageUrl),
-                  ),
-                );
+                changeScreen(imageUrl, context);
+
               },
               icon: Icon(Icons.remove_red_eye),
               label: Text("Limpe seus olhos"))
@@ -37,9 +33,13 @@ class MyHomeScreen extends StatelessWidget {
     );
   }
 
-  Future<String> searchImageUrl() async {
-    var requisicao = NetworkHelper(url:"https://random.dog/woof.json");
-    var dados = RandomDog.fromJson(await requisicao.getData());
-    return dados.url;
+  void changeScreen(String imageUrl, BuildContext context) {
+    Navigator.push(
+     context,
+      MaterialPageRoute(    // Para numero maior de telas dá para melhorar isso
+        builder: (context) => RandomImageScreen(url: imageUrl),
+      ),
+    );
   }
+
 }

@@ -16,12 +16,6 @@ class RandomImageScreen extends StatelessWidget {
         body: Column(
           children: [
             Expanded(child: new Image.network(url)),
-            ElevatedButton.icon(
-              onPressed:(){
-                print(url);
-              },
-              icon: Icon(Icons.account_box_rounded),
-              label: Text("Debug"))
           ],
         ),
       ),

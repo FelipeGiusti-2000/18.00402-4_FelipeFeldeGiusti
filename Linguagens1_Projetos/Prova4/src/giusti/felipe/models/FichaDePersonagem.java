@@ -85,4 +85,22 @@ public class FichaDePersonagem {
     public int getNivelAtual() {
         return nivelAtual;
     }
+
+    @Override
+    public String toString() {
+        return "FichaDePersonagem{" +
+                "nome='" + nome + '\'' +
+                ", raca=" + raca +
+                ", profissao=" + profissao +
+                ", mana=" + mana +
+                ", ataque=" + ataque +
+                ", ataqueMagico=" + ataqueMagico +
+                ", defesa=" + defesa +
+                ", defesaMagica=" + defesaMagica +
+                ", velocidade=" + velocidade +
+                ", destreza=" + destreza +
+                ", experiencia=" + experiencia +
+                ", nivelAtual=" + nivelAtual +
+                '}';
+    }
 }

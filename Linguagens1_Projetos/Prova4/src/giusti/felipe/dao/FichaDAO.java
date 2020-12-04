@@ -10,7 +10,7 @@ import java.util.List;
 
 public class FichaDAO implements DAO<FichaDePersonagem>, DAOFields{
     private Connection connection;
-    private final String myDBConnectionString = "jdbc:sqlite:p4Ficha.db";
+    private final String myDBConnectionString = "jdbc:sqlite:fichaP4.db";
 
     public FichaDAO(){
         try{

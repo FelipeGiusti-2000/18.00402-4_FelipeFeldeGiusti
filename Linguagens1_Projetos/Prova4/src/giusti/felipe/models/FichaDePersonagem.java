@@ -4,6 +4,7 @@ import giusti.felipe.enums.ProfissoesEnum;
 import giusti.felipe.enums.RacasEnum;
 
 public class FichaDePersonagem {
+    private static int id;
     private String nome;
     private RacasEnum raca;
     private ProfissoesEnum profissao;
@@ -18,6 +19,7 @@ public class FichaDePersonagem {
     private int nivelAtual;
 
     public FichaDePersonagem(String nome, RacasEnum raca, ProfissoesEnum profissao, int mana, int ataque, int ataqueMagico, int defesa, int defesaMagica, int velocidade, int destreza, int experiencia, int nivelAtual) {
+        id++;
         this.nome = nome;
         this.raca = raca;
         this.profissao = profissao;

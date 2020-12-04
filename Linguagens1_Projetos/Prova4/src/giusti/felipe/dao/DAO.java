@@ -11,6 +11,5 @@ public interface DAO<T> {
     List<T> getAll();
     void delete(T t);
     void insert(T t);
+    void update(T t);
 }
-
-

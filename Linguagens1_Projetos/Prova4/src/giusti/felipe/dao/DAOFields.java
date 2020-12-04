@@ -38,11 +38,13 @@ public interface DAOFields {
      */
     String getSelectConditionalString(String table);
 
+
     /**
-     * String com codigo em SQLite para atualizar a tabela
+     * String com codigo em SQLite para atualizar tabela dado id
      * @param table tabela a ser selecionada
      * @return string com codigo em SQLite
      */
     String getUpdateString(String table);
+
 }
 

@@ -33,4 +33,56 @@ public class FichaDePersonagem {
         this.experiencia = experiencia;
         this.nivelAtual = nivelAtual;
     }
+
+    public static int getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public RacasEnum getRaca() {
+        return raca;
+    }
+
+    public ProfissoesEnum getProfissao() {
+        return profissao;
+    }
+
+    public int getMana() {
+        return mana;
+    }
+
+    public int getAtaque() {
+        return ataque;
+    }
+
+    public int getAtaqueMagico() {
+        return ataqueMagico;
+    }
+
+    public int getDefesa() {
+        return defesa;
+    }
+
+    public int getDefesaMagica() {
+        return defesaMagica;
+    }
+
+    public int getVelocidade() {
+        return velocidade;
+    }
+
+    public int getDestreza() {
+        return destreza;
+    }
+
+    public int getExperiencia() {
+        return experiencia;
+    }
+
+    public int getNivelAtual() {
+        return nivelAtual;
+    }
 }

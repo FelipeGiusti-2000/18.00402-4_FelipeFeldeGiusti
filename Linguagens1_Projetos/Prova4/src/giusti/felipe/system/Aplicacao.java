@@ -41,10 +41,13 @@ public class Aplicacao {
                     break;
                 case 2:
                     alterarPersonagem();
+                    break;
                 case 3:
                     exibirPersonagens();
+                    break;
                 case 4:
-                    DeletarPersonagem();
+                    deletarPersonagem();
+                    break;
             }
 
         }while (loop);
@@ -87,13 +90,16 @@ public class Aplicacao {
         int nivelAtual = Integer.parseInt(scanner.next());
 
         FichaDePersonagem ficha = new FichaDePersonagem(
-                nome, raca, profissao, mana, ataque, ataqueMagico, defesa, defesaMagica, velocidade, destreza, experiencia, nivelAtual);
+                0,  nome, raca, profissao, mana, ataque, ataqueMagico, defesa, defesaMagica, velocidade, destreza, experiencia, nivelAtual);
         fichaDAO.insert(ficha);
 
     }
 
     private void alterarPersonagem() {
-        System.out.println("Indique o nome do seu personagem: ");
+        System.out.println("Digite o id do personagem a ser alterado");
+        String nomeAntigo = scanner.next();
+
+        System.out.println("Indique o nome do seu personagem novo: ");
         String nome = scanner.next();
         mostrarRacas();
         RacasEnum raca = escolherRaca();
@@ -126,7 +132,12 @@ public class Aplicacao {
 
         System.out.println("Indique o nivel atual: ");
         int nivelAtual = Integer.parseInt(scanner.next());
-        
+
+        FichaDePersonagem ficha = new FichaDePersonagem(
+                0, nome, raca, profissao, mana, ataque, ataqueMagico, defesa, defesaMagica, velocidade, destreza, experiencia, nivelAtual);
+
+        fichaDAO.update(ficha, nomeAntigo);
+
     }
 
 
@@ -135,7 +146,12 @@ public class Aplicacao {
         listaFichas.forEach(ficha -> System.out.println(ficha));
     }
 
-    private void DeletarPersonagem() {
+    private void deletarPersonagem() {
+        System.out.println("digite o id do personagem a ser deletado: ");
+        String nome = scanner.next();
+
+        FichaDePersonagem ficha = new FichaDePersonagem(nome);
+        fichaDAO.delete(ficha);
 
     }
 

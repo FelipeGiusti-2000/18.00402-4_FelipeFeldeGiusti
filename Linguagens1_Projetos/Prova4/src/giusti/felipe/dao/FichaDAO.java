@@ -10,7 +10,7 @@ import java.util.List;
 
 public class FichaDAO implements DAO<FichaDePersonagem>, DAOFields{
     private Connection connection;
-    private final String myDBConnectionString = "jdbc:sqlite:fichaP4.db";
+    private final String myDBConnectionString = "jdbc:sqlite:p4Ficha.db";
 
     public FichaDAO(){
         try{
@@ -22,12 +22,13 @@ public class FichaDAO implements DAO<FichaDePersonagem>, DAOFields{
 
     @Override
     public List<FichaDePersonagem> get(String condition) {
-        List<FichaDePersonagem> produtos = new ArrayList<>();
+        List<FichaDePersonagem> fichaDePersonagems = new ArrayList<>();
         try{
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(getSelectConditionalString(getTableName()) + condition);
             while(result.next()){
                 FichaDePersonagem produto = new FichaDePersonagem(
+                        result.getInt("id"),
                         result.getString("nome"),
                         RacasEnum.valueOf(result.getString("raca")),
                         ProfissoesEnum.valueOf(result.getString("profissao")),
@@ -41,25 +42,26 @@ public class FichaDAO implements DAO<FichaDePersonagem>, DAOFields{
                         result.getInt("experiencia"),
                         result.getInt("nivelAtual")
                 );
-                produtos.add(produto);
+                fichaDePersonagems.add(produto);
             }
             result.close();
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        return produtos;
+        return fichaDePersonagems;
     }
 
     @Override
     public List<FichaDePersonagem> getAll() {
-        List<FichaDePersonagem> produtos = new ArrayList<>();
+        List<FichaDePersonagem> fichaDePersonagems = new ArrayList<>();
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(getSelectAllString((getTableName())));
 
             ResultSet result = preparedStatement.executeQuery();
             while(result.next()){
                 FichaDePersonagem fichaDePersonagem = new FichaDePersonagem(
+                        result.getInt("id"),
                         result.getString("nome"),
                         RacasEnum.valueOf(result.getString("raca")),
                         ProfissoesEnum.valueOf(result.getString("profissao")),
@@ -73,14 +75,14 @@ public class FichaDAO implements DAO<FichaDePersonagem>, DAOFields{
                         result.getInt("experiencia"),
                         result.getInt("nivelAtual")
                 );
-                produtos.add(fichaDePersonagem);
+                fichaDePersonagems.add(fichaDePersonagem);
             }
             result.close();
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        return produtos;
+        return fichaDePersonagems;
     }
 
     @Override
@@ -91,6 +93,7 @@ public class FichaDAO implements DAO<FichaDePersonagem>, DAOFields{
             preparedStatement.executeUpdate();
         }
         catch(Exception e){
+            System.out.println("Erro no delete\n");
             e.printStackTrace();
         }
     }
@@ -99,47 +102,47 @@ public class FichaDAO implements DAO<FichaDePersonagem>, DAOFields{
     public void insert(FichaDePersonagem fichaDePersonagem) {
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(getInsertString(getTableName()));
-            preparedStatement.setInt(1, fichaDePersonagem.getId());
-            preparedStatement.setString(2, fichaDePersonagem.getNome());
-            preparedStatement.setString(3, fichaDePersonagem.getRaca().toString());
-            preparedStatement.setString(4, fichaDePersonagem.getProfissao().toString());
-            preparedStatement.setInt(5, fichaDePersonagem.getMana());
-            preparedStatement.setInt(6, fichaDePersonagem.getAtaque());
-            preparedStatement.setInt(7, fichaDePersonagem.getAtaqueMagico());
-            preparedStatement.setInt(8, fichaDePersonagem.getDefesa());
-            preparedStatement.setInt(9, fichaDePersonagem.getDefesaMagica());
-            preparedStatement.setInt(10, fichaDePersonagem.getVelocidade());
-            preparedStatement.setInt(11, fichaDePersonagem.getDestreza());
-            preparedStatement.setInt(12, fichaDePersonagem.getExperiencia());
-            preparedStatement.setInt(13, fichaDePersonagem.getNivelAtual());
+            preparedStatement.setString(1, fichaDePersonagem.getNome());
+            preparedStatement.setString(2, fichaDePersonagem.getRaca().toString());
+            preparedStatement.setString(3, fichaDePersonagem.getProfissao().toString());
+            preparedStatement.setInt(4, fichaDePersonagem.getMana());
+            preparedStatement.setInt(5, fichaDePersonagem.getAtaque());
+            preparedStatement.setInt(6, fichaDePersonagem.getAtaqueMagico());
+            preparedStatement.setInt(7, fichaDePersonagem.getDefesa());
+            preparedStatement.setInt(8, fichaDePersonagem.getDefesaMagica());
+            preparedStatement.setInt(9, fichaDePersonagem.getVelocidade());
+            preparedStatement.setInt(10, fichaDePersonagem.getDestreza());
+            preparedStatement.setInt(11, fichaDePersonagem.getExperiencia());
+            preparedStatement.setInt(12, fichaDePersonagem.getNivelAtual());
 
             preparedStatement.executeUpdate();
         }catch (Exception e){
+            System.out.println("Erro no insert\n");
             e.printStackTrace();
         }
     }
 
     @Override
-    public void update(FichaDePersonagem fichaDePersonagem) {
+    public void update(FichaDePersonagem fichaDePersonagem, String id) {
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(getUpdateString(getTableName()));
-            preparedStatement.setInt(1, fichaDePersonagem.getId());
-            preparedStatement.setString(2, fichaDePersonagem.getNome());
-            preparedStatement.setString(3, fichaDePersonagem.getRaca().toString());
-            preparedStatement.setString(4, fichaDePersonagem.getProfissao().toString());
-            preparedStatement.setInt(5, fichaDePersonagem.getMana());
-            preparedStatement.setInt(6, fichaDePersonagem.getAtaque());
-            preparedStatement.setInt(7, fichaDePersonagem.getAtaqueMagico());
-            preparedStatement.setInt(8, fichaDePersonagem.getDefesa());
-            preparedStatement.setInt(9, fichaDePersonagem.getDefesaMagica());
-            preparedStatement.setInt(10, fichaDePersonagem.getVelocidade());
-            preparedStatement.setInt(11, fichaDePersonagem.getDestreza());
-            preparedStatement.setInt(12, fichaDePersonagem.getExperiencia());
-            preparedStatement.setInt(13, fichaDePersonagem.getNivelAtual());
-            preparedStatement.setInt(14, fichaDePersonagem.getId());
+            preparedStatement.setString(1, fichaDePersonagem.getNome());
+            preparedStatement.setString(2, fichaDePersonagem.getRaca().toString());
+            preparedStatement.setString(3, fichaDePersonagem.getProfissao().toString());
+            preparedStatement.setInt(4, fichaDePersonagem.getMana());
+            preparedStatement.setInt(5, fichaDePersonagem.getAtaque());
+            preparedStatement.setInt(6, fichaDePersonagem.getAtaqueMagico());
+            preparedStatement.setInt(7, fichaDePersonagem.getDefesa());
+            preparedStatement.setInt(8, fichaDePersonagem.getDefesaMagica());
+            preparedStatement.setInt(9, fichaDePersonagem.getVelocidade());
+            preparedStatement.setInt(10, fichaDePersonagem.getDestreza());
+            preparedStatement.setInt(11, fichaDePersonagem.getExperiencia());
+            preparedStatement.setInt(12, fichaDePersonagem.getNivelAtual());
+            preparedStatement.setString(13, id);
 
             preparedStatement.executeUpdate();
         }catch (Exception e){
+            System.out.println("Erro no update\n");
             e.printStackTrace();
         }
     }
@@ -151,12 +154,12 @@ public class FichaDAO implements DAO<FichaDePersonagem>, DAOFields{
 
     @Override
     public String getDeleteString(String table) {
-        return "DELETE FROM \"+table+\" WHERE id = ?;";
+        return "DELETE FROM \"" + table + "\" WHERE id = ?;";
     }
 
     @Override
     public String getInsertString(String table) {
-        return "INSERT INTO " + table + " (id, nome, raca, profissao, mana, ataque, ataqueMagico, defesa, defesaMagica, velocidade, destreza, experiencia, nivelAtual) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
+        return "INSERT INTO " + table + " (nome, raca, profissao, mana, ataque, ataqueMagico, defesa, defesaMagica, velocidade, destreza, experiencia, nivelAtual) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
     }
 
     @Override
@@ -171,6 +174,6 @@ public class FichaDAO implements DAO<FichaDePersonagem>, DAOFields{
 
     @Override
     public String getUpdateString(String table) {
-        return "UPDATE "+ table +" SET id = ?, nome = ?, raca = ?, profissao = ?, mana = ?, ataque = ?, ataqueMagico = ?, defesa = ?, defesaMagica = ?, velocidade = ?, destreza = ?, experiencia = ?, nivelAtual = ?, WHERE id = ?;";
+        return "UPDATE "+ table +" SET nome = ?, raca = ?, profissao = ?, mana = ?, ataque = ?, ataqueMagico = ?, defesa = ?, defesaMagica = ?, velocidade = ?, destreza = ?, experiencia = ?, nivelAtual = ? WHERE id = ?;";
     }
 }

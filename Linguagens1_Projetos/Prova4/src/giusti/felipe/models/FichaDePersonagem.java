@@ -4,7 +4,7 @@ import giusti.felipe.enums.ProfissoesEnum;
 import giusti.felipe.enums.RacasEnum;
 
 public class FichaDePersonagem {
-    private static int id;
+    private int id;
     private String nome;
     private RacasEnum raca;
     private ProfissoesEnum profissao;
@@ -18,8 +18,8 @@ public class FichaDePersonagem {
     private int experiencia;
     private int nivelAtual;
 
-    public FichaDePersonagem(String nome, RacasEnum raca, ProfissoesEnum profissao, int mana, int ataque, int ataqueMagico, int defesa, int defesaMagica, int velocidade, int destreza, int experiencia, int nivelAtual) {
-        id++;
+    public FichaDePersonagem(int id, String nome, RacasEnum raca, ProfissoesEnum profissao, int mana, int ataque, int ataqueMagico, int defesa, int defesaMagica, int velocidade, int destreza, int experiencia, int nivelAtual) {
+        this.id = id;
         this.nome = nome;
         this.raca = raca;
         this.profissao = profissao;
@@ -33,8 +33,11 @@ public class FichaDePersonagem {
         this.experiencia = experiencia;
         this.nivelAtual = nivelAtual;
     }
+    public FichaDePersonagem(String nome){
+        this.nome = nome;
+    }
 
-    public static int getId() {
+    public int getId() {
         return id;
     }
 
@@ -89,7 +92,8 @@ public class FichaDePersonagem {
     @Override
     public String toString() {
         return "FichaDePersonagem{" +
-                "nome='" + nome + '\'' +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
                 ", raca=" + raca +
                 ", profissao=" + profissao +
                 ", mana=" + mana +
